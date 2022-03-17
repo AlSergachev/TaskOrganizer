@@ -1,4 +1,4 @@
-package com.example.taskorganizer.ui.details
+package com.example.taskorganizer.presentation.fragments.main
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,24 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.taskorganizer.R
 
-class DetailsFragment : Fragment() {
+class MainFragment : Fragment() {
 
     companion object {
-        fun newInstance() = DetailsFragment()
+        fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: DetailsViewModel
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.details_fragment, container, false)
+    ): View {
+        return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

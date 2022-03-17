@@ -1,4 +1,4 @@
-package com.example.taskorganizer.ui.main
+package com.example.taskorganizer.presentation.fragments.main
 
 import androidx.lifecycle.ViewModel
 
