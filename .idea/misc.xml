@@ -9,7 +9,8 @@
         <entry key="..\:/Java/TaskOrganizer/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1545" />
         <entry key="..\:/Java/TaskOrganizer/app/src/main/res/drawable/ic_list.xml" value="0.1555" />
         <entry key="..\:/Java/TaskOrganizer/app/src/main/res/drawable/shape_bottom_button.xml" value="0.1555" />
-        <entry key="..\:/Java/TaskOrganizer/app/src/main/res/layout/create_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Java/TaskOrganizer/app/src/main/res/drawable/task_descri.xml" value="0.2415" />
+        <entry key="..\:/Java/TaskOrganizer/app/src/main/res/layout/create_fragment.xml" value="0.439453125" />
         <entry key="..\:/Java/TaskOrganizer/app/src/main/res/layout/details_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Java/TaskOrganizer/app/src/main/res/layout/main_activity.xml" value="0.2" />
         <entry key="..\:/Java/TaskOrganizer/app/src/main/res/layout/main_fragment.xml" value="0.25416666666666665" />

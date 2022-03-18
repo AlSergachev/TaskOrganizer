@@ -7,26 +7,41 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.taskorganizer.R
+import com.example.taskorganizer.databinding.CreateFragmentBinding
 
 class CreateFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = CreateFragment()
-    }
+//    companion object {
+//        fun newInstance() = CreateFragment()
+//    }
+//
+//    private lateinit var viewModel: CreateViewModel
 
-    private lateinit var viewModel: CreateViewModel
+    lateinit var binding: CreateFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.create_fragment, container, false)
+        binding = CreateFragmentBinding.inflate(layoutInflater, container,false)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CreateViewModel::class.java)
-        // TODO: Use the ViewModel
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        init()
     }
+
+    private fun init() {
+
+    }
+
+
+//    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//        super.onActivityCreated(savedInstanceState)
+//        viewModel = ViewModelProvider(this).get(CreateViewModel::class.java)
+//        // TODO: Use the ViewModel
+//    }
 
 }

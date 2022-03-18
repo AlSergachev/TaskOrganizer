@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">TaskOrganizer</string>
     <string name="title">Title</string>
+    <string name="task_title">Task Title</string>
+    <string name="task_description">Task Description</string>
+    <string name="task_deadline">Task Deadline</string>
+    <string name="reminder">Reminder</string>
+    <string name="task_place">Place</string>
 </resources>

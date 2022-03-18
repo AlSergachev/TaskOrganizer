@@ -1,13 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
     tools:context=".presentation.fragments.create.CreateFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="0dp"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin"
+            app:cardElevation="@dimen/card_elevation">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/task_title"
+                style="@style/task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="@color/secondary_green_086"
+                android:hint="@string/task_title"
+                android:textAppearance="@style/text_task_title" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin"
+            app:cardElevation="@dimen/card_elevation">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/task_description"
+                style="@style/task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="@color/secondary_green_072"
+                android:hint="@string/task_description"
+                android:textAppearance="@style/task_data" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin"
+            app:cardElevation="@dimen/card_elevation">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/task_deadline"
+                style="@style/task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/secondary_green_058"
+                android:gravity="center_vertical"
+                android:ems="10"
+                android:hint="@string/task_deadline"
+                android:inputType="datetime"
+                android:textAppearance="@style/task_data" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin"
+            app:cardElevation="@dimen/card_elevation">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/secondary_green_044">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/task_reminder"
+                    style="@style/task"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/reminder"
+                    android:textAppearance="@style/task_data" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="@dimen/width_check_box"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin"
+            app:cardElevation="@dimen/card_elevation">
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/task_place"
+                style="@style/task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/secondary_green_030"
+                android:gravity="center_vertical"
+                android:hint="@string/task_place"
+                android:textAppearance="@style/task_data" />
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_margin"/>
+
+
+    </LinearLayout>
+</ScrollView>
