@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.taskorganizer.presentation
 
 import androidx.appcompat.app.AppCompatActivity
@@ -9,16 +11,49 @@ import com.example.taskorganizer.databinding.MainActivityBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding:MainActivityBinding
+    lateinit var binding: MainActivityBinding
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = MainActivityBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binding = MainActivityBinding.inflate(layoutInflater).also { setContentView(it.root) }
         APP = this
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
+        setListener()
 
+    }
+
+    private fun setListener() {
+        binding.btnCreateTask.setOnClickListener {
+            toCreateFragment()
+        }
+        binding.btnListTask.setOnClickListener {
+            toListFragment()
+        }
+        binding.btnDetailsTask.setOnClickListener {
+            toDetailsFragment()
+        }
+    }
+
+    private fun resetColor() {
+        binding.btnCreateTask.setBackgroundColor(resources.getColor(R.color.primary_green))
+        binding.btnListTask.setBackgroundColor(resources.getColor(R.color.primary_green))
+        binding.btnDetailsTask.setBackgroundColor(resources.getColor(R.color.primary_green))
+    }
+
+    fun toDetailsFragment(){
+        resetColor()
+        navController.navigate(R.id.detailsFragment)
+    }
+
+    fun toCreateFragment(){
+        resetColor()
+        navController.navigate(R.id.createFragment)
+    }
+
+    fun toListFragment(){
+        resetColor()
+        navController.navigate(R.id.mainFragment)
     }
 }
