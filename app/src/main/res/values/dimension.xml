@@ -3,8 +3,14 @@
     <dimen name="text_size_title">34dp</dimen>
     <dimen name="text_size_task_title">20dp</dimen>
     <dimen name="text_size_task_data">18dp</dimen>
+    <dimen name="text_size_button">16dp</dimen>
+    <dimen name="text_size_task_excuse">16dp</dimen>
     <dimen name="card_elevation">10dp</dimen>
     <dimen name="vertical_margin">20dp</dimen>
     <dimen name="width_check_box">40dp</dimen>
     <dimen name="bottom_margin">30dp</dimen>
+    <dimen name="bottom_margin_vertical">10dp</dimen>
+    <dimen name="bottom_margin_horizontal">5dp</dimen>
+    <dimen name="bottom_height">40dp</dimen>
+    <dimen name="excuse_padding">10dp</dimen>
 </resources>

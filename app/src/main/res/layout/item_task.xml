@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/secondary_green_086">
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:layout_width="32dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="10dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:layout_marginStart="8dp"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/task_title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:text="@string/task_title"
+            android:textAppearance="@style/text_task_title"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/task_deadline"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:text="@string/task_title"
+            android:textAppearance="@style/task_data"/>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/clear"
+        android:src="@drawable/ic_reminder"/>
+
+</LinearLayout>
