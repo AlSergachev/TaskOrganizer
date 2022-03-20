@@ -53,7 +53,7 @@
                     android:background="@color/secondary_green_072"
                     android:gravity="center_vertical"
                     android:hint="@string/task_description"
-                    android:textAppearance="@style/task_data" />
+                    android:textAppearance="@style/text_task_data" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -72,7 +72,7 @@
                     android:gravity="center_vertical"
                     android:hint="@string/task_deadline"
                     android:inputType="datetime"
-                    android:textAppearance="@style/task_data" />
+                    android:textAppearance="@style/text_task_data" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -94,7 +94,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:text="@string/reminder"
-                        android:textAppearance="@style/task_data" />
+                        android:textAppearance="@style/text_task_data" />
 
                     <androidx.appcompat.widget.AppCompatCheckBox
                         android:id="@+id/check_box_reminder"
@@ -117,7 +117,7 @@
                     android:background="@color/secondary_green_030"
                     android:gravity="center_vertical"
                     android:hint="@string/task_place"
-                    android:textAppearance="@style/task_data" />
+                    android:textAppearance="@style/text_task_data" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -140,7 +140,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:text="@string/task_done"
-                        android:textAppearance="@style/task_data" />
+                        android:textAppearance="@style/text_task_data" />
 
                     <androidx.appcompat.widget.AppCompatCheckBox
                         android:id="@+id/check_box_done"
@@ -164,7 +164,7 @@
                     android:gravity="center"
                     android:padding="@dimen/excuse_padding"
                     android:text="@string/task_excuse"
-                    android:textAppearance="@style/text_style"
+                    android:textAppearance="@style/text_title_style"
                     android:textSize="@dimen/text_size_task_excuse" />
             </androidx.cardview.widget.CardView>
 

@@ -10,11 +10,13 @@
         <entry key="..\:/Java/TaskOrganizer/app/src/main/res/drawable/ic_list.xml" value="0.1555" />
         <entry key="..\:/Java/TaskOrganizer/app/src/main/res/drawable/shape_bottom_button.xml" value="0.1555" />
         <entry key="..\:/Java/TaskOrganizer/app/src/main/res/drawable/shape_fragments_button.xml" value="0.162" />
+        <entry key="..\:/Java/TaskOrganizer/app/src/main/res/drawable/shape_item.xml" value="0.1615" />
         <entry key="..\:/Java/TaskOrganizer/app/src/main/res/drawable/task_descri.xml" value="0.2415" />
         <entry key="..\:/Java/TaskOrganizer/app/src/main/res/font/work_sans_bold.xml" value="0.284375" />
         <entry key="..\:/Java/TaskOrganizer/app/src/main/res/layout/create_fragment.xml" value="0.264" />
-        <entry key="..\:/Java/TaskOrganizer/app/src/main/res/layout/details_fragment.xml" value="0.1" />
-        <entry key="..\:/Java/TaskOrganizer/app/src/main/res/layout/item_task.xml" value="0.6" />
+        <entry key="..\:/Java/TaskOrganizer/app/src/main/res/layout/details_fragment.xml" value="0.264" />
+        <entry key="..\:/Java/TaskOrganizer/app/src/main/res/layout/item_done_task.xml" value="0.25416666666666665" />
+        <entry key="..\:/Java/TaskOrganizer/app/src/main/res/layout/item_task.xml" value="0.5711340206185567" />
         <entry key="..\:/Java/TaskOrganizer/app/src/main/res/layout/main_activity.xml" value="0.2" />
         <entry key="..\:/Java/TaskOrganizer/app/src/main/res/layout/main_fragment.xml" value="0.25" />
         <entry key="..\:/Java/TaskOrganizer/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1545" />

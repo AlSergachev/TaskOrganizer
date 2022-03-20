@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="text_style" parent="TextAppearance.AppCompat.Body1">
+    <style name="text_title_style" parent="TextAppearance.AppCompat.Body1">
         <item name="fontFamily">@font/work_sans_bold</item>
         <item name="android:fontFamily">@font/work_sans_bold</item>
         <item name="android:textColor">@color/dark_blue</item>
+    </style>
 
+    <style name="text_style" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/dark_blue</item>
     </style>
 
     <style name="text_title" parent ="text_style" >
         <item name="android:textSize">@dimen/text_size_title</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:letterSpacing">0.2</item>
+        <item name="android:letterSpacing">0.1</item>
     </style>
     <style name="text_task_title" parent ="text_style" >
         <item name="android:textSize">@dimen/text_size_task_title</item>
         <item name="android:textStyle">bold</item>
     </style>
-    <style name="task_data" parent ="text_style" >
+    <style name="text_task_data" parent ="text_style" >
         <item name="android:textSize">@dimen/text_size_task_data</item>
     </style>
+
 
     <style name="button">
         <item name="android:layout_marginTop">@dimen/bottom_margin_vertical</item>
@@ -35,8 +39,8 @@
 
 
     <style name="task">
-        <item name="android:paddingTop">9dp</item>
-        <item name="android:paddingBottom">9dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
         <item name="android:paddingStart">15dp</item>
         <item name="android:paddingEnd">5dp</item>
     </style>

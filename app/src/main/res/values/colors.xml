@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="background">#EDF5E1</color>
     <color name="dark_blue">#05386B</color>
+    <color name="dark_blue_50">#8005386B</color>
     <color name="selected_green">#379683</color>
     <color name="primary_green_">#5CDB95</color>
     <color name="background_">#EDF5E1</color>
