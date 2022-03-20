@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             toListFragment()
         }
         binding.btnDetailsTask.setOnClickListener {
-            toDetailsFragment()
+            toDetailsFragment(null)
         }
     }
 
@@ -44,9 +44,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnDetailsTask.setBackgroundColor(resources.getColor(R.color.primary_green))
     }
 
-    fun toDetailsFragment(){
+    fun toDetailsFragment(bundle: Bundle?){
         resetColor()
-        navController.navigate(R.id.detailsFragment)
+        navController.navigate(R.id.detailsFragment, bundle)
     }
 
     fun toCreateFragment(){

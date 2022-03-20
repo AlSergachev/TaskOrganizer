@@ -30,7 +30,7 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/task_title"
-                    style="@style/task"
+                    style="@style/task_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/secondary_green_086"
@@ -47,7 +47,7 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/task_description"
-                    style="@style/task"
+                    style="@style/task_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/secondary_green_072"
@@ -64,7 +64,7 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/task_deadline"
-                    style="@style/task"
+                    style="@style/task_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/secondary_green_058"
@@ -98,8 +98,7 @@
 
                     <androidx.appcompat.widget.AppCompatCheckBox
                         android:id="@+id/check_box_reminder"
-                        android:layout_width="@dimen/width_check_box"
-                        android:layout_height="match_parent" />
+                        style="@style/check_box_details" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -111,7 +110,7 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/task_place"
-                    style="@style/task"
+                    style="@style/task_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/secondary_green_030"
@@ -144,8 +143,8 @@
 
                     <androidx.appcompat.widget.AppCompatCheckBox
                         android:id="@+id/check_box_done"
-                        android:layout_width="@dimen/width_check_box"
-                        android:layout_height="match_parent" />
+                        style="@style/check_box_details" />
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -186,16 +185,18 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_save"
             style="@style/button"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/bottom_height"
             android:text="@string/save_task"
-            android:visibility="gone" />
+            android:visibility="gone"
+            />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_edit"
             style="@style/button"
             android:layout_width="0dp"
             android:layout_height="@dimen/bottom_height"
+            android:visibility="visible"
             android:text="@string/edit_task" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -203,6 +204,7 @@
             style="@style/button"
             android:layout_width="0dp"
             android:layout_height="@dimen/bottom_height"
+            android:visibility="visible"
             android:text="@string/delete_task" />
     </LinearLayout>
 

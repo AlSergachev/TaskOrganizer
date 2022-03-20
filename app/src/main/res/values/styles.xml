@@ -44,4 +44,18 @@
         <item name="android:paddingStart">15dp</item>
         <item name="android:paddingEnd">5dp</item>
     </style>
+    <style name="task_details" parent="task">
+        <item name="android:longClickable">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:cursorVisible">false</item>
+    </style>
+
+
+    <style name="check_box_details">
+        <item name="android:layout_width">@dimen/width_check_box</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:clickable">false</item>
+        <item name="android:longClickable">false</item>
+    </style>
+
 </resources>

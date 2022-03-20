@@ -66,7 +66,7 @@ class CreateFragment : Fragment() {
             title = binding.taskTitle.toString(),
             description = binding.taskDescription.toString(),
             deadline = binding.taskDeadline.toString(),     // todo: toTime
-            reminder = binding.checkBoxReminder.isChecked,
+            isReminder = binding.checkBoxReminder.isChecked,
             place = binding.taskPlace.toString()
         )
         return saveTaskUseCase.execute(task)

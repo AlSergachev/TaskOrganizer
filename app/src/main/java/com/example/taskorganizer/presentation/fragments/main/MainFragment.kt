@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.taskorganizer.R
 import com.example.taskorganizer.databinding.MainFragmentBinding
+import com.example.taskorganizer.domain.models.TaskModel
+import com.example.taskorganizer.presentation.Constants
 import com.example.taskorganizer.presentation.app.APP
 
 class MainFragment : Fragment() {
@@ -47,6 +49,18 @@ class MainFragment : Fragment() {
             APP.toCreateFragment()
         }
     }
+
+
+    companion object {
+        @JvmStatic private val KEY_TASK = "TASK"
+
+        fun clickTask(task: TaskModel) {
+            val bundle = Bundle()
+            bundle.putParcelable(Constants.KEY_TASK, task)
+            APP.toDetailsFragment(bundle)
+        }
+    }
+
 
 
 //

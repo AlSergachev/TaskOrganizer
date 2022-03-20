@@ -1,10 +1,12 @@
 package com.example.taskorganizer.domain.usecase
 
+import com.example.taskorganizer.domain.models.TaskModel
+
 class DeleteTaskUseCase {
 
-    fun execute(): Boolean {
+    fun execute(task: TaskModel): Boolean {
         // TODO: Implement task deleting
-        return true
+        return false
     }
 
 }
