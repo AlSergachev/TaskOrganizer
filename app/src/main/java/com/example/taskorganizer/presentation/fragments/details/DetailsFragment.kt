@@ -91,8 +91,12 @@ class DetailsFragment : Fragment() {
     }
 
     private fun setActivityParam() {
+        APP.binding.btnCreateTask.isClickable = true
+        APP.binding.btnListTask.isClickable = true
+        APP.binding.btnDetailsTask.isClickable = false
         APP.binding.btnDetailsTask.setBackgroundColor(resources.getColor(R.color.selected_green))
         APP.binding.title.text = NAME_FRAGMENT
+
     }
 
     private fun editTask(){

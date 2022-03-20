@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.taskorganizer.presentation.fragments.main.MainFragment"
+        android:name="com.example.taskorganizer.presentation.fragments.list.ListFragment"
         android:label="main_fragment"
         tools:layout="@layout/main_fragment" >
         <action

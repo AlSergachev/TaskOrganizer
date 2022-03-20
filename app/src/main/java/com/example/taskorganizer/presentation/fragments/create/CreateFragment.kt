@@ -73,6 +73,9 @@ class CreateFragment : Fragment() {
     }
 
     private fun setActivityParam() {
+        APP.binding.btnDetailsTask.isClickable = true
+        APP.binding.btnListTask.isClickable = true
+        APP.binding.btnCreateTask.isClickable = false
         APP.binding.btnCreateTask.setBackgroundColor(resources.getColor(R.color.selected_green))
         APP.binding.title.text = NAME_FRAGMENT
     }

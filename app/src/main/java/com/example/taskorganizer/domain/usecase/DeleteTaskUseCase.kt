@@ -6,7 +6,7 @@ class DeleteTaskUseCase {
 
     fun execute(task: TaskModel): Boolean {
         // TODO: Implement task deleting
-        return false
+        return true
     }
 
 }

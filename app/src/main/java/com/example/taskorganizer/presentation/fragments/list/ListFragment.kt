@@ -1,4 +1,4 @@
-package com.example.taskorganizer.presentation.fragments.main
+package com.example.taskorganizer.presentation.fragments.list
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +11,7 @@ import com.example.taskorganizer.domain.models.TaskModel
 import com.example.taskorganizer.presentation.Constants
 import com.example.taskorganizer.presentation.app.APP
 
-class MainFragment : Fragment() {
+class ListFragment : Fragment() {
 
     private val NAME_FRAGMENT: String = "All Tasks"
 
@@ -39,6 +39,9 @@ class MainFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        APP.binding.btnDetailsTask.isClickable = true
+        APP.binding.btnCreateTask.isClickable = true
+        APP.binding.btnListTask.isClickable = false
         APP.binding.btnListTask.setBackgroundColor(resources.getColor(R.color.selected_green))
         APP.binding.title.text = NAME_FRAGMENT
     }
