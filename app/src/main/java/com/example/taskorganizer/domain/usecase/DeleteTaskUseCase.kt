@@ -1,10 +1,13 @@
 package com.example.taskorganizer.domain.usecase
 
 import com.example.taskorganizer.domain.models.TaskModel
+import com.example.taskorganizer.domain.repository.TaskRepository
 
-class DeleteTaskUseCase {
+class DeleteTaskUseCase(private val repository: TaskRepository) {
 
-    fun execute(task: TaskModel): Boolean {
+    suspend fun execute(task: TaskModel): Boolean {
+
+        repository.deleteTask(task)
         // TODO: Implement task deleting
         return true
     }
