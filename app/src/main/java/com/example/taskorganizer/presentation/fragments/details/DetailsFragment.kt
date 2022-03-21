@@ -12,24 +12,19 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.taskorganizer.R
 import com.example.taskorganizer.databinding.DetailsFragmentBinding
 import com.example.taskorganizer.domain.models.TaskModel
-import com.example.taskorganizer.domain.usecase.DeleteTaskUseCase
-import com.example.taskorganizer.domain.usecase.SaveTaskUseCase
 import com.example.taskorganizer.presentation.Constants
 import com.example.taskorganizer.app.APP
+import com.example.taskorganizer.app.App
+import javax.inject.Inject
 
 @Suppress("DEPRECATION")
 class DetailsFragment : Fragment() {
 
-    private final val NAME_FRAGMENT: String = "Show Task Details"
+    @Inject
+    lateinit var detailsFactory: DetailsViewModelFactory
+
+    private val NAME_FRAGMENT: String = "Show Task Details"
     private lateinit var task: TaskModel
-    private val saveTaskUseCase = SaveTaskUseCase()
-    private val deleteTaskUseCase = DeleteTaskUseCase()
-
-//    companion object {
-//        fun newInstance() = DetailsFragment()
-//    }
-//
-
     private lateinit var binding: DetailsFragmentBinding
     private lateinit var viewModel: DetailsViewModel
 
@@ -38,11 +33,18 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DetailsFragmentBinding.inflate(layoutInflater, container, false)
-        task = arguments?.getParcelable(Constants.KEY_TASK) ?: TaskModel()
         return binding.root
     }
 
-    private fun renderState() = with(binding){
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        (activity?.applicationContext as App).appComponent.injectDetailsFragment(this)
+        task = arguments?.getParcelable(Constants.KEY_TASK) ?: TaskModel()
+        initialization()
+        setListener()
+    }
+
+    private fun renderState() = with(binding) {
         taskTitle.setText(task.title)
         taskDescription.setText(task.description)
         taskDeadline.setText(task.deadline)
@@ -52,29 +54,19 @@ class DetailsFragment : Fragment() {
         taskExcuse.text = task.excuse
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initialization()
-        setListener()
-
-    }
-
     private fun setListener() {
         binding.btnDelete.setOnClickListener {
             if (deleteTask()) {
                 APP.toListFragment()
             } else {
                 Toast.makeText(this.context, "Удаление не удалось", Toast.LENGTH_LONG).show()
-
             }
         }
-        binding.btnEdit.setOnClickListener {
-            editTask()
-        }
+        binding.btnEdit.setOnClickListener { editTask() }
         binding.btnSave.setOnClickListener {
-            if(saveTask()){
+            if (saveTask()) {
                 Toast.makeText(context, "Сохранение выполнено успешно", Toast.LENGTH_LONG).show()
-            }else{
+            } else {
                 Toast.makeText(context, "Сохранение не удалось", Toast.LENGTH_LONG).show()
                 editTask()
             }
@@ -84,8 +76,7 @@ class DetailsFragment : Fragment() {
     private fun initialization() {
         setActivityParam()
         renderState()
-        viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
-
+        viewModel = ViewModelProvider(this, detailsFactory)[DetailsViewModel::class.java]
     }
 
     private fun setActivityParam() {
@@ -97,7 +88,7 @@ class DetailsFragment : Fragment() {
 
     }
 
-    private fun editTask(){
+    private fun editTask() {
         setClickableEditText(binding.taskTitle, true)
         setClickableEditText(binding.taskDescription, true)
         setClickableEditText(binding.taskDeadline, true)
@@ -109,8 +100,8 @@ class DetailsFragment : Fragment() {
     }
 
 
-    private fun setClickableEditText(v: EditText, bool : Boolean) = with(v){
-        isClickable =  bool
+    private fun setClickableEditText(v: EditText, bool: Boolean) = with(v) {
+        isClickable = bool
         isLongClickable = bool
         isCursorVisible = bool
         isFocusable = bool
@@ -118,16 +109,13 @@ class DetailsFragment : Fragment() {
         requestFocus()
     }
 
-    private fun setClickableCheckBox(v: CheckBox, bool : Boolean) = with(v){
-        isClickable =  bool
+    private fun setClickableCheckBox(v: CheckBox, bool: Boolean) = with(v) {
+        isClickable = bool
         isLongClickable = bool
         isFocusable = bool
     }
 
-
-
-
-    private fun saveTask(): Boolean{
+    private fun saveTask(): Boolean {
 
         val newTask = TaskModel(
             title = binding.taskTitle.toString(),
@@ -147,11 +135,11 @@ class DetailsFragment : Fragment() {
         setClickableCheckBox(binding.checkBoxDone, false)
         binding.btnSave.visibility = View.GONE
 
-        deleteTaskUseCase.execute(task)
-        return saveTaskUseCase.execute(newTask)
+        return (viewModel.delete(task) && viewModel.save(newTask))
     }
-    private fun deleteTask(): Boolean{
-        return deleteTaskUseCase.execute(task)
+
+    private fun deleteTask(): Boolean {
+        return viewModel.delete(task)
     }
 
 }

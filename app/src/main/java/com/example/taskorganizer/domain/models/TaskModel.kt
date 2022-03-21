@@ -1,11 +1,11 @@
 package com.example.taskorganizer.domain.models
 
 import android.os.Parcelable
-import android.text.format.Time
+//import android.text.format.Time
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "task_table")
 @Parcelize

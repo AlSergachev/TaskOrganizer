@@ -9,7 +9,7 @@ class TaskRepositoryImpl(private val taskDao: TaskDao): TaskRepository {
     override val listTasks: LiveData<List<TaskModel>>
         get() = taskDao.getListTasks()
 
-    override suspend fun insertTask(task: TaskModel) {
+    override fun insertTask(task: TaskModel) {
         taskDao.insert(task)
     }
 

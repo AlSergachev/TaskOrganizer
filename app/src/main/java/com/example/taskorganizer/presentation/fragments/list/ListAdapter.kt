@@ -1,6 +1,7 @@
 package com.example.taskorganizer.presentation.fragments.list
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,9 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskorganizer.R
+import com.example.taskorganizer.app.APP
 import com.example.taskorganizer.domain.models.TaskModel
+import com.example.taskorganizer.presentation.Constants
 
 class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
 
@@ -55,4 +58,21 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
     override fun getItemCount(): Int {
         return listTask.size
     }
+
+    override fun onViewAttachedToWindow(holder: ListViewHolder) {
+        super.onViewAttachedToWindow(holder)
+        holder.itemView.setOnClickListener {
+            clickTask(listTask[holder.adapterPosition])
+        }
+    }
+
+    fun clickTask(task: TaskModel) {
+        val bundle = Bundle()
+        bundle.putParcelable(Constants.KEY_TASK, task)
+        APP.toDetailsFragment(bundle)
+    }
+
+//    override fun onViewDetachedFromWindow(holder: ListViewHolder) {
+//        holder.itemView.setOnClickListener(null)
+//    }
 }

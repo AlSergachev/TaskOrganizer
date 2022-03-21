@@ -9,6 +9,8 @@ import androidx.navigation.Navigation
 import com.example.taskorganizer.R
 import com.example.taskorganizer.databinding.MainActivityBinding
 import com.example.taskorganizer.app.APP
+import com.example.taskorganizer.app.App
+import com.example.taskorganizer.data.basedata.TaskBaseData
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,12 +19,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = MainActivityBinding.inflate(layoutInflater).also { setContentView(it.root) }
+        binding = MainActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        (applicationContext as App).appComponent.inject(this)
         APP = this
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-
         setListener()
-
     }
 
 

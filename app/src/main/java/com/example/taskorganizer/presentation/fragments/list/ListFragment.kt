@@ -1,4 +1,3 @@
-
 package com.example.taskorganizer.presentation.fragments.list
 
 import android.os.Bundle
@@ -13,15 +12,19 @@ import com.example.taskorganizer.domain.models.TaskModel
 import com.example.taskorganizer.domain.usecase.GetTaskListUseCase
 import com.example.taskorganizer.presentation.Constants
 import com.example.taskorganizer.app.APP
+import com.example.taskorganizer.app.App
+import javax.inject.Inject
 
 class ListFragment : Fragment() {
 
+    @Inject
+    lateinit var listFactory: ListViewModelFactory
+
     @Suppress("PrivatePropertyName")
     private val NAME_FRAGMENT: String = "All Tasks"
-
     private lateinit var viewModel: ListViewModel
     private lateinit var binding: MainFragmentBinding
-    private val getTaskListUseCase = GetTaskListUseCase()
+    private lateinit var adapter: ListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,23 +34,25 @@ class ListFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        (activity?.applicationContext as App).appComponent.injectListFragment(this)
         initialization()
         setListener()
     }
 
     private fun initialization() {
-        viewModel = ViewModelProvider(this)[ListViewModel::class.java]
+        viewModel = ViewModelProvider(this, listFactory)[ListViewModel::class.java]
         setActivityParam()
-        val adapter =  ListAdapter()
+        adapter = ListAdapter()
         binding.recyclerView.adapter = adapter
-        adapter.setList(getTaskListUseCase.execute())
-
+        viewModel.taskList.observe(viewLifecycleOwner) { newList ->
+            adapter.setList(newList)
+        }
     }
 
 
-
+    @Suppress("DEPRECATION")
     private fun setActivityParam() {
         APP.binding.btnDetailsTask.isClickable = true
         APP.binding.btnCreateTask.isClickable = true
@@ -63,14 +68,13 @@ class ListFragment : Fragment() {
     }
 
 
-    companion object {
-        fun clickTask(task: TaskModel) {
-            val bundle = Bundle()
-            bundle.putParcelable(Constants.KEY_TASK, task)
-            APP.toDetailsFragment(bundle)
-        }
-    }
-
+//    companion object {
+//        fun clickTask(task: TaskModel) {
+//            val bundle = Bundle()
+//            bundle.putParcelable(Constants.KEY_TASK, task)
+//            APP.toDetailsFragment(bundle)
+//        }
+//    }
 
 
 //

@@ -1,7 +1,6 @@
 package com.example.taskorganizer.di
 
 import android.content.Context
-import androidx.room.Database
 import com.example.taskorganizer.data.basedata.TaskBaseData
 import com.example.taskorganizer.data.dao.TaskDao
 import com.example.taskorganizer.data.repository.TaskRepositoryImpl
@@ -23,7 +22,7 @@ class DataModule {
         return database.getTaskDao()
     }
 
-    @Provides
+    @Provides @Singleton
     fun provideTaskRepository(dao: TaskDao):TaskRepository{
         return TaskRepositoryImpl(taskDao = dao)
     }

@@ -8,7 +8,7 @@ import com.example.taskorganizer.domain.models.TaskModel
 interface TaskDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(task: TaskModel)
+    fun insert(task: TaskModel)
 
     @Delete
     suspend fun delete(task: TaskModel)

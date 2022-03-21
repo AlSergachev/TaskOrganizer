@@ -5,6 +5,6 @@ import com.example.taskorganizer.domain.models.TaskModel
 
 interface TaskRepository {
     val listTasks: LiveData<List<TaskModel>>
-    suspend fun insertTask(task: TaskModel)
+    fun insertTask(task: TaskModel)
     suspend fun deleteTask(task: TaskModel)
 }
