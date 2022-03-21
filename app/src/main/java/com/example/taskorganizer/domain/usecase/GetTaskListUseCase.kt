@@ -7,7 +7,7 @@ import com.example.taskorganizer.domain.repository.TaskRepository
 class GetTaskListUseCase(private val repository: TaskRepository) {
 
     fun execute(): LiveData<List<TaskModel>> {
-        return  repository.listTasks
+        return  repository.listTasks()
     }
 
 }

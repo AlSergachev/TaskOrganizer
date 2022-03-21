@@ -15,13 +15,17 @@ class CreateViewModel(
     private val saveTaskUseCase: SaveTaskUseCase
 ) : ViewModel() {
 
-//    private val taskLiveData = MutableLiveData<TaskModel>()
-//    val task: LiveData<TaskModel> get() = taskLiveData
+    fun save(newTask: TaskModel) = viewModelScope.launch(Dispatchers.IO) {
+        try {
+            saveTaskUseCase.execute(newTask)
+        } catch (e: Exception) {
+        }
+    }
 
-    fun save(newTask: TaskModel): Boolean {
-        Log.e(Constants.TAG, "CreateViewModel.save")
-        return saveTaskUseCase.execute(newTask)
 
+
+//    fun save(newTask: TaskModel): Boolean {
+//        Log.e(Constants.TAG, "CreateViewModel.save")
 //        return try{viewModelScope.launch(Dispatchers.IO) {
 //            saveTaskUseCase.execute(newTask)
 //        }
@@ -29,7 +33,16 @@ class CreateViewModel(
 //        }catch (e:Exception){
 //            false
 //        }
-    }
+//
+//
+////        return try{viewModelScope.launch(Dispatchers.IO) {
+////            saveTaskUseCase.execute(newTask)
+////        }
+////            true
+////        }catch (e:Exception){
+////            false
+////        }
+//    }
 
 
 }

@@ -48,6 +48,7 @@ class CreateFragment : Fragment() {
     private fun setListener() {
         binding.btnSave.setOnClickListener {
             if (saveTask()) {
+                Toast.makeText(context, "Сохранение удалось", Toast.LENGTH_LONG).show()
                 APP.toListFragment()
             } else {
                 Toast.makeText(context, "Сохранение не удалось", Toast.LENGTH_LONG).show()
@@ -65,7 +66,13 @@ class CreateFragment : Fragment() {
             place = binding.taskPlace.toString()
         )
         Log.e(Constants.TAG, "CreateFragment.saveTask")
-        return viewModel.save(task)
+
+        try {
+            viewModel.save(task)
+        } catch (e: Exception) {
+            return false
+        }
+        return true
     }
 
     private fun setActivityParam() {

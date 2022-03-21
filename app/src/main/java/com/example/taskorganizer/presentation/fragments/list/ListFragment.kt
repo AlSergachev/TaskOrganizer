@@ -1,18 +1,19 @@
 package com.example.taskorganizer.presentation.fragments.list
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.example.taskorganizer.R
 import com.example.taskorganizer.databinding.MainFragmentBinding
-import com.example.taskorganizer.domain.models.TaskModel
-import com.example.taskorganizer.domain.usecase.GetTaskListUseCase
-import com.example.taskorganizer.presentation.Constants
 import com.example.taskorganizer.app.APP
 import com.example.taskorganizer.app.App
+import com.example.taskorganizer.presentation.Constants
 import javax.inject.Inject
 
 class ListFragment : Fragment() {
@@ -24,6 +25,7 @@ class ListFragment : Fragment() {
     private val NAME_FRAGMENT: String = "All Tasks"
     private lateinit var viewModel: ListViewModel
     private lateinit var binding: MainFragmentBinding
+    private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ListAdapter
 
     override fun onCreateView(
@@ -46,9 +48,12 @@ class ListFragment : Fragment() {
         setActivityParam()
         adapter = ListAdapter()
         binding.recyclerView.adapter = adapter
-        viewModel.taskList.observe(viewLifecycleOwner) { newList ->
-            adapter.setList(newList)
-        }
+        adapter.notifyDataSetChanged()
+
+//        viewModel.getList().observe(viewLifecycleOwner, Observer {newList ->
+//            Log.e(Constants.TAG, "set to adapter $newList")
+//            adapter.setList(newList)
+//        })
     }
 
 
@@ -64,6 +69,12 @@ class ListFragment : Fragment() {
     private fun setListener() {
         binding.btnCreate.setOnClickListener {
             APP.toCreateFragment()
+        }
+        binding.btnUpdate.setOnClickListener{
+            viewModel.getList().observe(viewLifecycleOwner, Observer {newList ->
+                adapter.setList(newList)
+                adapter.notifyDataSetChanged()
+            })
         }
     }
 
