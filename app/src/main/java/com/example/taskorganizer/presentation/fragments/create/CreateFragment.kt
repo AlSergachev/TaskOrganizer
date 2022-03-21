@@ -13,7 +13,7 @@ import com.example.taskorganizer.R
 import com.example.taskorganizer.databinding.CreateFragmentBinding
 import com.example.taskorganizer.domain.models.TaskModel
 import com.example.taskorganizer.domain.usecase.SaveTaskUseCase
-import com.example.taskorganizer.presentation.app.APP
+import com.example.taskorganizer.app.APP
 
 class CreateFragment : Fragment() {
 

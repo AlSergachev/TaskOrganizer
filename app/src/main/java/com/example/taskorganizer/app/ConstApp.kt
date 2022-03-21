@@ -1,4 +1,4 @@
-package com.example.taskorganizer.presentation.app
+package com.example.taskorganizer.app
 
 import com.example.taskorganizer.presentation.MainActivity
 

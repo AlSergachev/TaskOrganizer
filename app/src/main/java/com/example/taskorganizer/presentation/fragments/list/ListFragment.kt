@@ -12,7 +12,7 @@ import com.example.taskorganizer.databinding.MainFragmentBinding
 import com.example.taskorganizer.domain.models.TaskModel
 import com.example.taskorganizer.domain.usecase.GetTaskListUseCase
 import com.example.taskorganizer.presentation.Constants
-import com.example.taskorganizer.presentation.app.APP
+import com.example.taskorganizer.app.APP
 
 class ListFragment : Fragment() {
 

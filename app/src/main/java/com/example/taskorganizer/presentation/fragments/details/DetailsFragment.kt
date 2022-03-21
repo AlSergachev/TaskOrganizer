@@ -1,6 +1,5 @@
 package com.example.taskorganizer.presentation.fragments.details
 
-import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.example.taskorganizer.R
 import com.example.taskorganizer.databinding.DetailsFragmentBinding
@@ -17,7 +15,7 @@ import com.example.taskorganizer.domain.models.TaskModel
 import com.example.taskorganizer.domain.usecase.DeleteTaskUseCase
 import com.example.taskorganizer.domain.usecase.SaveTaskUseCase
 import com.example.taskorganizer.presentation.Constants
-import com.example.taskorganizer.presentation.app.APP
+import com.example.taskorganizer.app.APP
 
 @Suppress("DEPRECATION")
 class DetailsFragment : Fragment() {

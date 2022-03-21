@@ -8,7 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.taskorganizer.R
 import com.example.taskorganizer.databinding.MainActivityBinding
-import com.example.taskorganizer.presentation.app.APP
+import com.example.taskorganizer.app.APP
 
 class MainActivity : AppCompatActivity() {
 
