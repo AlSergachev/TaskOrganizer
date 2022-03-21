@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData
 import com.example.taskorganizer.domain.models.TaskModel
 
 interface TaskRepository {
-//    val listTasks: LiveData<List<TaskModel>>
     fun listTasks(): LiveData<List<TaskModel>>
     fun insertTask(task: TaskModel)
-    suspend fun deleteTask(task: TaskModel)
+    fun deleteTask(task: TaskModel)
 }

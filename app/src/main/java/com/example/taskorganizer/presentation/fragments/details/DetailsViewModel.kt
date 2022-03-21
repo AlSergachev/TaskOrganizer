@@ -14,23 +14,24 @@ class DetailsViewModel(
 ) : ViewModel() {
 
     fun save(newTask: TaskModel): Boolean {
-        return try{viewModelScope.launch(Dispatchers.IO) {
-            saveTaskUseCase.execute(newTask)
+        try {
+            viewModelScope.launch(Dispatchers.IO) {
+                saveTaskUseCase.execute(newTask)
+            }
+        } catch (e: Exception) {
+            return false
         }
-            true
-        }catch (e:Exception){
-            false
-        }
+        return true
     }
 
     fun delete(newTask: TaskModel): Boolean {
-        return try{viewModelScope.launch(Dispatchers.IO) {
-            deleteTaskUseCase.execute(newTask)
+        try {
+            viewModelScope.launch(Dispatchers.IO) {
+                deleteTaskUseCase.execute(newTask)
+            }
+        } catch (e: Exception) {
+            return false
         }
-            true
-        }catch (e:Exception){
-            false
-        }
+        return true
     }
-
 }

@@ -11,7 +11,7 @@ interface TaskDao {
     fun insert(task: TaskModel)
 
     @Delete
-    suspend fun delete(task: TaskModel)
+    fun delete(task: TaskModel)
 
     @Query("SELECT * from task_table")
     fun getListTasks(): LiveData<List<TaskModel>>

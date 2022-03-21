@@ -25,50 +25,11 @@
         android:layout_height="0dp"
         app:defaultNavHost="true"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:navGraph="@navigation/nav_graph"
         tools:ignore="FragmentTagUsage" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_create_task"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_create"
-            android:background="@drawable/shape_bottom_button"/>
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_list_task"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_list"
-            android:background="@drawable/shape_bottom_button"/>
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_details_task"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_details"
-            android:background="@drawable/shape_bottom_button"/>
-
-    </LinearLayout>
-
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.taskorganizer.domain.usecase.DeleteTaskUseCase
 import com.example.taskorganizer.domain.usecase.SaveTaskUseCase
 
+@Suppress("UNCHECKED_CAST")
 class DetailsViewModelFactory(
     private val saveTaskUseCase: SaveTaskUseCase,
     private val deleteTaskUseCase: DeleteTaskUseCase

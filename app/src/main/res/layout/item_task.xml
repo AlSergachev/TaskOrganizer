@@ -70,13 +70,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/item_fog"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#45DDDDDD"
-            android:visibility="invisible"
-            />
+<!--        <View-->
+<!--            android:id="@+id/item_fog"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="#A9EFEFEF"-->
+<!--            android:visibility="visible"-->
+<!--            />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

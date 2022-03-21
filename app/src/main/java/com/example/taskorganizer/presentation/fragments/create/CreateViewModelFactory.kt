@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.taskorganizer.domain.usecase.SaveTaskUseCase
 
+@Suppress("UNCHECKED_CAST")
 class CreateViewModelFactory(
     private val saveTaskUseCase: SaveTaskUseCase
 ) : ViewModelProvider.Factory {
@@ -13,6 +14,5 @@ class CreateViewModelFactory(
             saveTaskUseCase = saveTaskUseCase
         ) as T
     }
-
 
 }

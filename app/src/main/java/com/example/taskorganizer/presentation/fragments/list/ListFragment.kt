@@ -1,5 +1,6 @@
 package com.example.taskorganizer.presentation.fragments.list
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,11 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.taskorganizer.R
 import com.example.taskorganizer.databinding.MainFragmentBinding
 import com.example.taskorganizer.app.APP
 import com.example.taskorganizer.app.App
-import com.example.taskorganizer.presentation.Constants
+import com.example.taskorganizer.presentation.utils.Constants
 import javax.inject.Inject
 
 class ListFragment : Fragment() {
@@ -44,42 +44,25 @@ class ListFragment : Fragment() {
         setListener()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun initialization() {
         viewModel = ViewModelProvider(this, listFactory)[ListViewModel::class.java]
-        setActivityParam()
+        APP.binding.title.text = NAME_FRAGMENT
         adapter = ListAdapter()
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         recyclerView.adapter = adapter
 
         viewModel.getList().observe(viewLifecycleOwner, Observer {newList ->
-            Log.e(Constants.TAG, "set to adapter $newList")
             adapter.setList(newList)
             adapter.notifyDataSetChanged()
         })
     }
-//    binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
-
 
     private fun setListener() {
         binding.btnCreate.setOnClickListener {
             APP.toCreateFragment()
         }
-        binding.btnUpdate.setOnClickListener{
-            viewModel.getList().observe(viewLifecycleOwner, Observer {newList ->
-                adapter.setList(newList)
-                adapter.notifyDataSetChanged()
-            })
-        }
-    }
-
-    @Suppress("DEPRECATION")
-    private fun setActivityParam() {
-        APP.binding.btnDetailsTask.isClickable = true
-        APP.binding.btnCreateTask.isClickable = true
-        APP.binding.btnListTask.isClickable = false
-        APP.binding.btnListTask.setBackgroundColor(resources.getColor(R.color.selected_green))
-        APP.binding.title.text = NAME_FRAGMENT
     }
 
 }

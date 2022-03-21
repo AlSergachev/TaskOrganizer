@@ -3,19 +3,16 @@
 package com.example.taskorganizer.presentation.fragments.create
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.example.taskorganizer.R
 import com.example.taskorganizer.databinding.CreateFragmentBinding
 import com.example.taskorganizer.domain.models.TaskModel
 import com.example.taskorganizer.app.APP
 import com.example.taskorganizer.app.App
-import com.example.taskorganizer.presentation.Constants
+import com.example.taskorganizer.presentation.utils.Notify
 import javax.inject.Inject
 
 class CreateFragment : Fragment() {
@@ -39,25 +36,24 @@ class CreateFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         (activity?.applicationContext as App).appComponent.injectCreateFragment(this)
         viewModel = ViewModelProvider(this, createFactory)[CreateViewModel::class.java]
-        setActivityParam()
+        APP.binding.title.text = NAME_FRAGMENT
         setListener()
     }
 
     private fun setListener() {
         binding.btnSave.setOnClickListener {
-            if (saveTask()) {
-                Toast.makeText(context, "Сохранение удалось", Toast.LENGTH_LONG).show()
+            val value = saveTask()
+            APP.toast(value)
+            if (value == Notify.SUCCESS_SAVE) {
                 APP.toListFragment()
-            } else {
-                Toast.makeText(context, "Сохранение не удалось", Toast.LENGTH_LONG).show()
             }
         }
     }
 
-    private fun saveTask(): Boolean {
-        Log.e(Constants.TAG, "CreateFragment.saveTask")
+    private fun saveTask(): Notify {
         val task = TaskModel(
             title = binding.taskTitle.text.toString(),
             description = binding.taskDescription.text.toString(),
@@ -65,21 +61,15 @@ class CreateFragment : Fragment() {
             isReminder = binding.checkBoxReminder.isChecked,
             place = binding.taskPlace.text.toString()
         )
-        Log.e(Constants.TAG, "CreateFragment.saveTask")
-
-        try {
-            viewModel.save(task)
-        } catch (e: Exception) {
-            return false
+        if (viewModel.isEmpty(task)) {
+            return Notify.EMPTY_TASK
         }
-        return true
+        return if (viewModel.save(task)) {
+            Notify.SUCCESS_SAVE
+        } else {
+            Notify.ERROR_SAVE
+        }
     }
 
-    private fun setActivityParam() {
-        APP.binding.btnDetailsTask.isClickable = true
-        APP.binding.btnListTask.isClickable = true
-        APP.binding.btnCreateTask.isClickable = false
-        APP.binding.btnCreateTask.setBackgroundColor(resources.getColor(R.color.selected_green))
-        APP.binding.title.text = NAME_FRAGMENT
-    }
+
 }

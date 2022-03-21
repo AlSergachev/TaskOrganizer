@@ -5,7 +5,7 @@ import com.example.taskorganizer.domain.repository.TaskRepository
 
 class SaveTaskUseCase(val repository: TaskRepository) {
 
-    suspend fun execute(task: TaskModel): Boolean {
+    fun execute(task: TaskModel): Boolean {
         task.excuse = addExcuse()
 
         return try {

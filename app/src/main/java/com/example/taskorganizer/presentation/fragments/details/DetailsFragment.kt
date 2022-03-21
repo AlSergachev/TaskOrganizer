@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.example.taskorganizer.R
 import com.example.taskorganizer.databinding.DetailsFragmentBinding
 import com.example.taskorganizer.domain.models.TaskModel
-import com.example.taskorganizer.presentation.Constants
+import com.example.taskorganizer.presentation.utils.Constants
 import com.example.taskorganizer.app.APP
 import com.example.taskorganizer.app.App
+import com.example.taskorganizer.presentation.utils.Notify
+import com.example.taskorganizer.presentation.utils.Notify.*
 import javax.inject.Inject
 
 @Suppress("DEPRECATION")
@@ -55,37 +55,29 @@ class DetailsFragment : Fragment() {
     }
 
     private fun setListener() {
+        binding.btnEdit.setOnClickListener { editTask() }
         binding.btnDelete.setOnClickListener {
-            if (deleteTask()) {
+            val value = deleteTask()
+            APP.toast(value)
+            if (value == SUCCESS_DELETE) {
                 APP.toListFragment()
-            } else {
-                Toast.makeText(this.context, "Удаление не удалось", Toast.LENGTH_LONG).show()
             }
         }
-        binding.btnEdit.setOnClickListener { editTask() }
         binding.btnSave.setOnClickListener {
-            if (saveTask()) {
-                Toast.makeText(context, "Сохранение выполнено успешно", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(context, "Сохранение не удалось", Toast.LENGTH_LONG).show()
+            val value = saveTask()
+            APP.toast(value)
+            if (value == SUCCESS_SAVE) {
+                APP.toListFragment()
+            }else{
                 editTask()
             }
         }
     }
 
     private fun initialization() {
-        setActivityParam()
-        renderState()
         viewModel = ViewModelProvider(this, detailsFactory)[DetailsViewModel::class.java]
-    }
-
-    private fun setActivityParam() {
-        APP.binding.btnCreateTask.isClickable = true
-        APP.binding.btnListTask.isClickable = true
-        APP.binding.btnDetailsTask.isClickable = false
-        APP.binding.btnDetailsTask.setBackgroundColor(resources.getColor(R.color.selected_green))
         APP.binding.title.text = NAME_FRAGMENT
-
+        renderState()
     }
 
     private fun editTask() {
@@ -98,7 +90,6 @@ class DetailsFragment : Fragment() {
         setClickableCheckBox(binding.checkBoxDone, true)
         binding.btnSave.visibility = View.VISIBLE
     }
-
 
     private fun setClickableEditText(v: EditText, bool: Boolean) = with(v) {
         isClickable = bool
@@ -115,7 +106,7 @@ class DetailsFragment : Fragment() {
         isFocusable = bool
     }
 
-    private fun saveTask(): Boolean {
+    private fun saveTask(): Notify {
 
         val newTask = TaskModel(
             title = binding.taskTitle.text.toString(),
@@ -135,11 +126,15 @@ class DetailsFragment : Fragment() {
         setClickableCheckBox(binding.checkBoxDone, false)
         binding.btnSave.visibility = View.GONE
 
-        return (viewModel.delete(task) && viewModel.save(newTask))
+        if (!viewModel.delete(task)) return ERROR_DELETE
+        if (!viewModel.save(newTask)) return ERROR_SAVE
+
+        return SUCCESS_SAVE
     }
 
-    private fun deleteTask(): Boolean {
-        return viewModel.delete(task)
+    private fun deleteTask(): Notify {
+        return if(!viewModel.delete(task)) ERROR_DELETE
+        else SUCCESS_DELETE
     }
 
 }
