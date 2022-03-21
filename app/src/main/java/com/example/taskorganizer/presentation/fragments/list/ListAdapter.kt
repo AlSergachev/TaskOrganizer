@@ -40,7 +40,6 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
     fun setList(list: List<TaskModel>) {
         Log.e(Constants.TAG, "ListAdapter $list")
         listTask = list
-        notifyDataSetChanged()
         Log.e(Constants.TAG, "ListAdapter")
     }
 

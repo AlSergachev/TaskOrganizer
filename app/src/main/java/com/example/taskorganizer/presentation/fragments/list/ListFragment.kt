@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskorganizer.R
 import com.example.taskorganizer.databinding.MainFragmentBinding
@@ -47,24 +48,18 @@ class ListFragment : Fragment() {
         viewModel = ViewModelProvider(this, listFactory)[ListViewModel::class.java]
         setActivityParam()
         adapter = ListAdapter()
-        binding.recyclerView.adapter = adapter
-        adapter.notifyDataSetChanged()
+        recyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(this.context)
+        recyclerView.adapter = adapter
 
-//        viewModel.getList().observe(viewLifecycleOwner, Observer {newList ->
-//            Log.e(Constants.TAG, "set to adapter $newList")
-//            adapter.setList(newList)
-//        })
+        viewModel.getList().observe(viewLifecycleOwner, Observer {newList ->
+            Log.e(Constants.TAG, "set to adapter $newList")
+            adapter.setList(newList)
+            adapter.notifyDataSetChanged()
+        })
     }
+//    binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
 
-
-    @Suppress("DEPRECATION")
-    private fun setActivityParam() {
-        APP.binding.btnDetailsTask.isClickable = true
-        APP.binding.btnCreateTask.isClickable = true
-        APP.binding.btnListTask.isClickable = false
-        APP.binding.btnListTask.setBackgroundColor(resources.getColor(R.color.selected_green))
-        APP.binding.title.text = NAME_FRAGMENT
-    }
 
     private fun setListener() {
         binding.btnCreate.setOnClickListener {
@@ -78,21 +73,13 @@ class ListFragment : Fragment() {
         }
     }
 
-
-//    companion object {
-//        fun clickTask(task: TaskModel) {
-//            val bundle = Bundle()
-//            bundle.putParcelable(Constants.KEY_TASK, task)
-//            APP.toDetailsFragment(bundle)
-//        }
-//    }
-
-
-//
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-//        // TODO: Use the ViewModel
-//    }
+    @Suppress("DEPRECATION")
+    private fun setActivityParam() {
+        APP.binding.btnDetailsTask.isClickable = true
+        APP.binding.btnCreateTask.isClickable = true
+        APP.binding.btnListTask.isClickable = false
+        APP.binding.btnListTask.setBackgroundColor(resources.getColor(R.color.selected_green))
+        APP.binding.title.text = NAME_FRAGMENT
+    }
 
 }

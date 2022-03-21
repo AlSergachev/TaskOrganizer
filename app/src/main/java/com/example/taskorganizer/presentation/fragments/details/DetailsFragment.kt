@@ -118,11 +118,11 @@ class DetailsFragment : Fragment() {
     private fun saveTask(): Boolean {
 
         val newTask = TaskModel(
-            title = binding.taskTitle.toString(),
-            description = binding.taskDescription.toString(),
-            deadline = binding.taskDeadline.toString(),     // todo: toTime
+            title = binding.taskTitle.text.toString(),
+            description = binding.taskDescription.text.toString(),
+            deadline = binding.taskDeadline.text.toString(),     // todo: toTime
             isReminder = binding.checkBoxReminder.isChecked,
-            place = binding.taskPlace.toString(),
+            place = binding.taskPlace.text.toString(),
             isDone = binding.checkBoxDone.isChecked
         )
 
