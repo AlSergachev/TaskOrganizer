@@ -55,6 +55,7 @@ class DetailsFragment : Fragment() {
     }
 
     private fun setListener() {
+
         binding.btnEdit.setOnClickListener { editTask() }
         binding.btnDelete.setOnClickListener {
             val value = deleteTask()
@@ -108,7 +109,8 @@ class DetailsFragment : Fragment() {
 
     private fun saveTask(): Notify {
 
-        val newTask = TaskModel(
+        val updateTask = TaskModel(
+            id = task.id,
             title = binding.taskTitle.text.toString(),
             description = binding.taskDescription.text.toString(),
             deadline = binding.taskDeadline.text.toString(),     // todo: toTime
@@ -126,9 +128,8 @@ class DetailsFragment : Fragment() {
         setClickableCheckBox(binding.checkBoxDone, false)
         binding.btnSave.visibility = View.GONE
 
-        if (!viewModel.delete(task)) return ERROR_DELETE
-        if (!viewModel.save(newTask)) return ERROR_SAVE
-
+        if(updateTask == task) return EQUAL_TASKS
+        if (!viewModel.save(updateTask)) return ERROR_SAVE
         return SUCCESS_SAVE
     }
 

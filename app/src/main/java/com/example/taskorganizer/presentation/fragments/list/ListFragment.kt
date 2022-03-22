@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.taskorganizer.databinding.MainFragmentBinding
 import com.example.taskorganizer.app.APP
 import com.example.taskorganizer.app.App
+import com.example.taskorganizer.domain.models.TaskModel
 import com.example.taskorganizer.presentation.utils.Constants
 import javax.inject.Inject
 
@@ -48,12 +49,12 @@ class ListFragment : Fragment() {
     private fun initialization() {
         viewModel = ViewModelProvider(this, listFactory)[ListViewModel::class.java]
         APP.binding.title.text = NAME_FRAGMENT
-        adapter = ListAdapter()
+        adapter = ListAdapter(::updateTask)
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         recyclerView.adapter = adapter
 
-        viewModel.getList().observe(viewLifecycleOwner, Observer {newList ->
+        viewModel.getList().observe(viewLifecycleOwner, Observer { newList ->
             adapter.setList(newList)
             adapter.notifyDataSetChanged()
         })
@@ -63,6 +64,15 @@ class ListFragment : Fragment() {
         binding.btnCreate.setOnClickListener {
             APP.toCreateFragment()
         }
+    }
+
+
+    private fun updateTask(task: TaskModel, rd: Int) {
+        when (rd) {
+            Constants.IS_DONE -> task.isDone = !task.isDone
+            Constants.IS_REMINDER -> task.isReminder = !task.isReminder
+        }
+        viewModel.save(task)
     }
 
 }

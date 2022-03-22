@@ -8,12 +8,14 @@ import com.example.taskorganizer.domain.usecase.SaveTaskUseCase
 
 @Suppress("UNCHECKED_CAST")
 class ListViewModelFactory(
-    private val getTaskListUseCase: GetTaskListUseCase
+    private val getTaskListUseCase: GetTaskListUseCase,
+    private val saveTaskUseCase: SaveTaskUseCase
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return ListViewModel(
-            getTaskListUseCase = getTaskListUseCase
+            getTaskListUseCase = getTaskListUseCase,
+            saveTaskUseCase = saveTaskUseCase
         ) as T
     }
 }

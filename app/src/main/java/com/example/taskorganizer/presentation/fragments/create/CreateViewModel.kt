@@ -14,14 +14,7 @@ class CreateViewModel(
     private val emptyTask = TaskModel()
 
     fun save(newTask: TaskModel): Boolean {
-        try {
-            viewModelScope.launch(Dispatchers.IO) {
-                saveTaskUseCase.execute(newTask)
-            }
-        } catch (e: Exception) {
-            return false
-        }
-        return true
+        return saveTaskUseCase.execute(newTask)
     }
 
     fun isEmpty(task: TaskModel) = task == emptyTask

@@ -13,25 +13,11 @@ class DetailsViewModel(
     private val deleteTaskUseCase: DeleteTaskUseCase
 ) : ViewModel() {
 
-    fun save(newTask: TaskModel): Boolean {
-        try {
-            viewModelScope.launch(Dispatchers.IO) {
-                saveTaskUseCase.execute(newTask)
-            }
-        } catch (e: Exception) {
-            return false
-        }
-        return true
+    fun save(task: TaskModel): Boolean {
+        return saveTaskUseCase.execute(task)
     }
 
-    fun delete(newTask: TaskModel): Boolean {
-        try {
-            viewModelScope.launch(Dispatchers.IO) {
-                deleteTaskUseCase.execute(newTask)
-            }
-        } catch (e: Exception) {
-            return false
-        }
-        return true
+    fun delete(task: TaskModel): Boolean {
+        return deleteTaskUseCase.execute(task)
     }
 }

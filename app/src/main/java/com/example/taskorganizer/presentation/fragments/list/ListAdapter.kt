@@ -14,7 +14,8 @@ import com.example.taskorganizer.app.APP
 import com.example.taskorganizer.domain.models.TaskModel
 import com.example.taskorganizer.presentation.utils.Constants
 
-class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
+class ListAdapter(private val onUpdateCallback: (TaskModel, Int) -> Unit) :
+    RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
 
     private var listTask = emptyList<TaskModel>()
 
@@ -45,12 +46,22 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
             View.GONE
         }
         holder.isDone.isChecked = listTask[position].isDone
+        holder.isDone.setOnClickListener {
+
+        }
+
     }
 
     override fun getItemCount() = listTask.size
 
     override fun onViewAttachedToWindow(holder: ListViewHolder) {
         super.onViewAttachedToWindow(holder)
+        holder.isDone.setOnClickListener {
+            onUpdateCallback(listTask[holder.adapterPosition], Constants.IS_DONE)
+        }
+        holder.isReminder.setOnClickListener {
+            onUpdateCallback(listTask[holder.adapterPosition], Constants.IS_REMINDER)
+        }
         holder.itemView.setOnClickListener {
             clickTask(listTask[holder.adapterPosition])
         }
@@ -61,4 +72,5 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
         bundle.putParcelable(Constants.KEY_TASK, task)
         APP.toDetailsFragment(bundle)
     }
+
 }

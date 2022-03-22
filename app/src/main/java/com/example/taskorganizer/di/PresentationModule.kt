@@ -1,11 +1,9 @@
 package com.example.taskorganizer.di
 
 import android.content.Context
-import androidx.lifecycle.ViewModelProvider
 import com.example.taskorganizer.domain.usecase.DeleteTaskUseCase
 import com.example.taskorganizer.domain.usecase.GetTaskListUseCase
 import com.example.taskorganizer.domain.usecase.SaveTaskUseCase
-import com.example.taskorganizer.presentation.fragments.create.CreateViewModel
 import com.example.taskorganizer.presentation.fragments.create.CreateViewModelFactory
 import com.example.taskorganizer.presentation.fragments.details.DetailsViewModelFactory
 import com.example.taskorganizer.presentation.fragments.list.ListViewModelFactory
@@ -36,8 +34,14 @@ class PresentationModule(val context: Context) {
     }
 
     @Provides
-    fun provideListViewModelFactory(getTaskListUseCase: GetTaskListUseCase): ListViewModelFactory {
-        return ListViewModelFactory(getTaskListUseCase = getTaskListUseCase)
+    fun provideListViewModelFactory(
+        getTaskListUseCase: GetTaskListUseCase,
+        saveTaskUseCase: SaveTaskUseCase
+    ): ListViewModelFactory {
+        return ListViewModelFactory(
+            getTaskListUseCase = getTaskListUseCase,
+            saveTaskUseCase = saveTaskUseCase
+        )
     }
 
 }

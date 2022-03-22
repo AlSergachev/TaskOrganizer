@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
             Notify.SUCCESS_SAVE -> "Задача успешно сохранена"
             Notify.ERROR_DELETE -> "Задача не удалена"
             Notify.SUCCESS_DELETE -> "Задача успешно удалена"
+            Notify.EQUAL_TASKS -> "Задача не сохранена. Вы не изменили задачу"
         }
         Toast.makeText(APP.applicationContext, test, Toast.LENGTH_LONG).show()
     }
