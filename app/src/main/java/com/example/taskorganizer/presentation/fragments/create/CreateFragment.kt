@@ -2,7 +2,10 @@
 
 package com.example.taskorganizer.presentation.fragments.create
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
+import android.text.format.DateFormat
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +16,7 @@ import com.example.taskorganizer.domain.models.TaskModel
 import com.example.taskorganizer.app.APP
 import com.example.taskorganizer.app.App
 import com.example.taskorganizer.presentation.utils.Notify
+import java.util.*
 import javax.inject.Inject
 
 class CreateFragment : Fragment() {
@@ -25,6 +29,12 @@ class CreateFragment : Fragment() {
 
     private lateinit var binding: CreateFragmentBinding
     private lateinit var viewModel: CreateViewModel
+    private lateinit var calendar: Calendar
+    private var mYear = 0
+    private var mMonth = 0
+    private var mDay = 0
+    private var mHour = 0
+    private var mMinute = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +61,41 @@ class CreateFragment : Fragment() {
                 APP.toListFragment()
             }
         }
+        binding.taskDeadline.setOnClickListener {
+            setDeadline()
+        }
+    }
+
+    @Suppress("RedundantSamConstructor")
+    private fun setDeadline() {
+        calendar = Calendar.getInstance()
+        getCurrentDateAndTime()
+        DatePickerDialog(
+            APP,
+            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                TimePickerDialog(
+                    APP,
+                    TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                        mHour = hourOfDay
+                        mMinute = minute
+                        calendar.set(mYear, mMonth, mDay, mHour, mMinute)
+                        binding.taskDeadline.text =
+                            DateFormat.format("EEE, d MMM yyyy HH:mm", calendar).toString()
+                    }, mHour, mMinute, true
+                ).show()
+                mYear = year
+                mMonth = month
+                mDay = dayOfMonth
+            }, mYear, mMonth, mDay
+        ).show()
+    }
+
+    private fun getCurrentDateAndTime() {
+        mYear = calendar.get(Calendar.YEAR)
+        mMonth = calendar.get(Calendar.MONTH)
+        mDay = calendar.get(Calendar.DAY_OF_MONTH)
+        mHour = calendar.get(Calendar.HOUR)
+        mMinute = calendar.get(Calendar.MINUTE)
     }
 
     private fun saveTask(): Notify {
@@ -70,6 +115,5 @@ class CreateFragment : Fragment() {
             Notify.ERROR_SAVE
         }
     }
-
 
 }

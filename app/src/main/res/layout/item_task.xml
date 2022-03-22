@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -32,7 +31,7 @@
             android:layout_marginEnd="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/item_reminder"
+            app:layout_constraintEnd_toStartOf="@+id/item_reminder_view"
             app:layout_constraintStart_toEndOf="@+id/item_check_box_done"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -40,8 +39,8 @@
                 android:id="@+id/item_task_title"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
                 android:layout_gravity="center_vertical"
+                android:layout_weight="1"
                 android:singleLine="true"
                 android:text="@string/task_title"
                 android:textAppearance="@style/text_task_title" />
@@ -50,33 +49,31 @@
                 android:id="@+id/item_task_deadline"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
                 android:layout_gravity="center_vertical"
+                android:layout_weight="1"
                 android:singleLine="true"
                 android:text="@string/task_deadline"
                 android:textAppearance="@style/text_task_data" />
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/item_reminder"
+        <FrameLayout
+            android:id="@+id/item_reminder_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            android:background="@color/clear"
-            android:visibility="gone"
-            android:src="@drawable/ic_reminder"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-<!--        <View-->
-<!--            android:id="@+id/item_fog"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="#A9EFEFEF"-->
-<!--            android:visibility="visible"-->
-<!--            />-->
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/item_reminder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/clear"
+                android:src="@drawable/ic_reminder"
+                android:visibility="visible" />
+        </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

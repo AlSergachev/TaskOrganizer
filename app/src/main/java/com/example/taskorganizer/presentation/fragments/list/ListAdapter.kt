@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
@@ -23,6 +24,7 @@ class ListAdapter(private val onUpdateCallback: (TaskModel, Int) -> Unit) :
         val title: AppCompatTextView = view.findViewById(R.id.item_task_title)
         val deadline: AppCompatTextView = view.findViewById(R.id.item_task_deadline)
         val isDone: AppCompatCheckBox = view.findViewById(R.id.item_check_box_done)
+        val isReminderView: FrameLayout = view.findViewById(R.id.item_reminder_view)
         val isReminder: AppCompatImageButton = view.findViewById(R.id.item_reminder)
     }
 
@@ -43,7 +45,7 @@ class ListAdapter(private val onUpdateCallback: (TaskModel, Int) -> Unit) :
         holder.isReminder.visibility = if (listTask[position].isReminder) {
             View.VISIBLE
         } else {
-            View.GONE
+            View.INVISIBLE
         }
         holder.isDone.isChecked = listTask[position].isDone
         holder.isDone.setOnClickListener {
@@ -58,6 +60,9 @@ class ListAdapter(private val onUpdateCallback: (TaskModel, Int) -> Unit) :
         super.onViewAttachedToWindow(holder)
         holder.isDone.setOnClickListener {
             onUpdateCallback(listTask[holder.adapterPosition], Constants.IS_DONE)
+        }
+        holder.isReminderView.setOnClickListener {
+            onUpdateCallback(listTask[holder.adapterPosition], Constants.IS_REMINDER)
         }
         holder.isReminder.setOnClickListener {
             onUpdateCallback(listTask[holder.adapterPosition], Constants.IS_REMINDER)

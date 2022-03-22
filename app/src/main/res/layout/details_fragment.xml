@@ -62,16 +62,17 @@
                 android:layout_marginTop="@dimen/vertical_margin"
                 app:cardElevation="@dimen/card_elevation">
 
-                <androidx.appcompat.widget.AppCompatEditText
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/task_deadline"
-                    style="@style/task_details"
+                    style="@style/task"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/secondary_green_058"
-                    android:ems="10"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
+                    android:textStyle="bold"
                     android:hint="@string/task_deadline"
-                    android:inputType="datetime"
+                    android:drawablePadding="-50dp"
+                    android:drawableStart="@drawable/ic_time"
                     android:textAppearance="@style/text_task_data" />
             </androidx.cardview.widget.CardView>
 
