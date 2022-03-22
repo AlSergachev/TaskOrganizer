@@ -9,14 +9,7 @@
         android:id="@+id/createFragment"
         android:name="com.example.taskorganizer.presentation.fragments.create.CreateFragment"
         android:label="create_fragment"
-        tools:layout="@layout/create_fragment" >
-        <action
-            android:id="@+id/action_createFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-        <action
-            android:id="@+id/action_createFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
-    </fragment>
+        tools:layout="@layout/create_fragment" />
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.taskorganizer.presentation.fragments.list.ListFragment"
@@ -33,12 +26,5 @@
         android:id="@+id/detailsFragment"
         android:name="com.example.taskorganizer.presentation.fragments.details.DetailsFragment"
         android:label="details_fragment"
-        tools:layout="@layout/details_fragment" >
-        <action
-            android:id="@+id/action_detailsFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-        <action
-            android:id="@+id/action_detailsFragment_to_createFragment"
-            app:destination="@id/createFragment" />
-    </fragment>
+        tools:layout="@layout/details_fragment" />
 </navigation>

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import com.example.taskorganizer.R
 import com.example.taskorganizer.databinding.DetailsFragmentBinding
 import com.example.taskorganizer.domain.models.TaskModel
 import com.example.taskorganizer.presentation.utils.Constants
@@ -26,8 +27,6 @@ class DetailsFragment : Fragment() {
 
     @Inject
     lateinit var detailsFactory: DetailsViewModelFactory
-
-    private val NAME_FRAGMENT: String = "Show Task Details"
     private lateinit var task: TaskModel
     private lateinit var binding: DetailsFragmentBinding
     private lateinit var viewModel: DetailsViewModel
@@ -64,6 +63,7 @@ class DetailsFragment : Fragment() {
         taskExcuse.text = task.excuse
     }
 
+
     private fun setListener() {
 
         binding.btnEdit.setOnClickListener { editTask() }
@@ -90,7 +90,6 @@ class DetailsFragment : Fragment() {
 
     private fun initialization() {
         viewModel = ViewModelProvider(this, detailsFactory)[DetailsViewModel::class.java]
-        APP.binding.title.text = NAME_FRAGMENT
         renderState()
     }
 
@@ -159,7 +158,7 @@ class DetailsFragment : Fragment() {
             id = task.id,
             title = binding.taskTitle.text.toString(),
             description = binding.taskDescription.text.toString(),
-            deadline = binding.taskDeadline.text.toString(),     // todo: toTime
+            deadline = binding.taskDeadline.text.toString(),
             isReminder = binding.checkBoxReminder.isChecked,
             place = binding.taskPlace.text.toString(),
             isDone = binding.checkBoxDone.isChecked

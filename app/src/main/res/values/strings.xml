@@ -12,4 +12,7 @@
     <string name="edit_task">Edit Task</string>
     <string name="delete_task">Delete Task</string>
     <string name="create_task">Create Task</string>
+    <string name="title_create">Create New Task</string>
+    <string name="title_details">Show Task Details</string>
+    <string name="title_all">All Tasks</string>
 </resources>

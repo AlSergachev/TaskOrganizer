@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskorganizer.databinding.MainFragmentBinding
@@ -22,10 +23,8 @@ class ListFragment : Fragment() {
 
     @Inject
     lateinit var listFactory: ListViewModelFactory
-
-    @Suppress("PrivatePropertyName")
-    private val NAME_FRAGMENT: String = "All Tasks"
     private lateinit var viewModel: ListViewModel
+    lateinit var navController: NavController
     private lateinit var binding: MainFragmentBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ListAdapter
@@ -48,7 +47,6 @@ class ListFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     private fun initialization() {
         viewModel = ViewModelProvider(this, listFactory)[ListViewModel::class.java]
-        APP.binding.title.text = NAME_FRAGMENT
         adapter = ListAdapter(::updateTask)
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(this.context)

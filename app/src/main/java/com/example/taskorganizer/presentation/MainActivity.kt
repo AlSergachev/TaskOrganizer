@@ -2,6 +2,7 @@
 
 package com.example.taskorganizer.presentation
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -16,16 +17,17 @@ import com.example.taskorganizer.presentation.utils.Notify
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: MainActivityBinding
-    private lateinit var navController: NavController
+    lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         (applicationContext as App).appComponent.inject(this)
-        APP = this
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        APP = this
+
+
     }
 
     fun toDetailsFragment(bundle: Bundle?){

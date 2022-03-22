@@ -21,12 +21,8 @@ import javax.inject.Inject
 
 class CreateFragment : Fragment() {
 
-    @Suppress("PrivatePropertyName")
-    private val NAME_FRAGMENT: String = "Create New Task"
-
     @Inject
     lateinit var createFactory: CreateViewModelFactory
-
     private lateinit var binding: CreateFragmentBinding
     private lateinit var viewModel: CreateViewModel
     private lateinit var calendar: Calendar
@@ -49,7 +45,6 @@ class CreateFragment : Fragment() {
 
         (activity?.applicationContext as App).appComponent.injectCreateFragment(this)
         viewModel = ViewModelProvider(this, createFactory)[CreateViewModel::class.java]
-        APP.binding.title.text = NAME_FRAGMENT
         setListener()
     }
 
@@ -102,7 +97,7 @@ class CreateFragment : Fragment() {
         val task = TaskModel(
             title = binding.taskTitle.text.toString(),
             description = binding.taskDescription.text.toString(),
-            deadline = binding.taskDeadline.text.toString(),     // todo: toTime
+            deadline = binding.taskDeadline.text.toString(),
             isReminder = binding.checkBoxReminder.isChecked,
             place = binding.taskPlace.text.toString()
         )

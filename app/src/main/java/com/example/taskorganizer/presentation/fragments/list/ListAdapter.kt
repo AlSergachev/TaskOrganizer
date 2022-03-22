@@ -75,7 +75,7 @@ class ListAdapter(private val onUpdateCallback: (TaskModel, Int) -> Unit) :
     private fun clickTask(task: TaskModel) {
         val bundle = Bundle()
         bundle.putParcelable(Constants.KEY_TASK, task)
-        APP.toDetailsFragment(bundle)
+        APP.navController.navigate(R.id.action_mainFragment_to_detailsFragment, bundle)
     }
 
 }

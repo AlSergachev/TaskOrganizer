@@ -7,6 +7,18 @@
     android:background="@color/background"
     tools:context=".presentation.fragments.details.DetailsFragment">
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_top"
+        android:gravity="center"
+        android:text="@string/title_details"
+        android:textAppearance="@style/text_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
@@ -15,7 +27,7 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/title">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,12 +80,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/secondary_green_058"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:hint="@string/task_deadline"
-                    android:drawablePadding="-50dp"
                     android:drawableStart="@drawable/ic_time"
-                    android:textAppearance="@style/text_task_data" />
+                    android:drawablePadding="-50dp"
+                    android:gravity="center"
+                    android:hint="@string/task_deadline"
+                    android:textAppearance="@style/text_task_data"
+                    android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
