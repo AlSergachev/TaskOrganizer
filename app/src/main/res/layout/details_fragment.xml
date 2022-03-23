@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title">
@@ -163,8 +163,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/vertical_margin"
                 android:layout_marginTop="@dimen/vertical_margin"
+                android:layout_marginBottom="@dimen/vertical_margin"
                 app:cardElevation="@dimen/card_elevation">
 
                 <LinearLayout
@@ -178,7 +178,8 @@
                         android:layout_height="wrap_content"
                         android:background="@color/secondary_green_016"
                         android:gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="UselessParent">
 
                         <androidx.appcompat.widget.AppCompatRadioButton
                             android:id="@+id/high_priority"
@@ -231,39 +232,29 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_save"
+        style="@style/button"
+        android:src="@drawable/ic_apply"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_save"
-            style="@style/button"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bottom_height"
-            android:text="@string/save_task"
-            android:visibility="gone"
-            />
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_edit"
+        style="@style/button"
+        android:src="@drawable/ic_edit"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_edit"
-            style="@style/button"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/bottom_height"
-            android:visibility="visible"
-            android:text="@string/edit_task" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_delete"
-            style="@style/button"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/bottom_height"
-            android:visibility="visible"
-            android:text="@string/delete_task" />
-    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_delete"
+        style="@style/button"
+        android:src="@drawable/ic_delete"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

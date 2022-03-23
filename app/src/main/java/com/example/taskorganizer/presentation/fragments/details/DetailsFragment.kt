@@ -111,6 +111,8 @@ class DetailsFragment : Fragment() {
         setClickableCheckBox(binding.lowPriority, true)
 
         binding.btnSave.visibility = View.VISIBLE
+        binding.btnDelete.visibility = View.GONE
+        binding.btnEdit.visibility = View.GONE
     }
 
     private fun setClickableEditText(v: TextView, bool: Boolean) = with(v) {
@@ -185,19 +187,6 @@ class DetailsFragment : Fragment() {
             isDone = binding.checkBoxDone.isChecked,
             priority = setPriority()
         )
-
-        setClickableEditText(binding.taskTitle, false)
-        setClickableEditText(binding.taskDescription, false)
-        setClickableEditText(binding.taskDeadline, false)
-        setClickableEditText(binding.taskPlace, false)
-        setClickableEditText(binding.taskTitle, false)
-        setClickableCheckBox(binding.checkBoxReminder, false)
-        setClickableCheckBox(binding.checkBoxDone, false)
-
-        setClickableCheckBox(binding.highPriority, true)
-        setClickableCheckBox(binding.normalPriority, true)
-        setClickableCheckBox(binding.lowPriority, true)
-        binding.btnSave.visibility = View.GONE
 
         if(updateTask == task) return EQUAL_TASKS
         if (!viewModel.save(updateTask)) return ERROR_SAVE
