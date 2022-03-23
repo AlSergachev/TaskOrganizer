@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +20,7 @@ import com.example.taskorganizer.app.APP
 import com.example.taskorganizer.app.App
 import com.example.taskorganizer.presentation.utils.Notify
 import com.example.taskorganizer.presentation.utils.Notify.*
+import com.example.taskorganizer.presentation.utils.Priority
 import java.util.*
 import javax.inject.Inject
 
@@ -61,6 +63,8 @@ class DetailsFragment : Fragment() {
         taskPlace.setText(task.place)
         checkBoxDone.isChecked = task.isDone
         taskExcuse.text = task.excuse
+        radioGroup.clearCheck()
+        getPriority(task)
     }
 
 
@@ -101,6 +105,11 @@ class DetailsFragment : Fragment() {
         setClickableEditText(binding.taskTitle, true)
         setClickableCheckBox(binding.checkBoxReminder, true)
         setClickableCheckBox(binding.checkBoxDone, true)
+
+        setClickableCheckBox(binding.highPriority, true)
+        setClickableCheckBox(binding.normalPriority, true)
+        setClickableCheckBox(binding.lowPriority, true)
+
         binding.btnSave.visibility = View.VISIBLE
     }
 
@@ -113,7 +122,7 @@ class DetailsFragment : Fragment() {
         requestFocus()
     }
 
-    private fun setClickableCheckBox(v: CheckBox, bool: Boolean) = with(v) {
+    private fun setClickableCheckBox(v: Button, bool: Boolean) = with(v) {
         isClickable = bool
         isLongClickable = bool
         isFocusable = bool
@@ -151,6 +160,18 @@ class DetailsFragment : Fragment() {
         mMinute = calendar.get(Calendar.MINUTE)
     }
 
+    private fun setPriority() = when(binding.radioGroup.checkedRadioButtonId){
+        R.id.high_priority -> Priority.HIGH.ordinal
+        R.id.normal_priority -> Priority.NORMAL.ordinal
+        else -> Priority.LOW.ordinal
+    }
+
+    private fun getPriority(task: TaskModel) = when(task.priority){
+        Priority.HIGH.ordinal -> binding.highPriority.isChecked = true
+        Priority.NORMAL.ordinal -> binding.normalPriority.isChecked = true
+        else -> binding.lowPriority.isChecked = true
+    }
+
 
     private fun saveTask(): Notify {
 
@@ -161,7 +182,8 @@ class DetailsFragment : Fragment() {
             deadline = binding.taskDeadline.text.toString(),
             isReminder = binding.checkBoxReminder.isChecked,
             place = binding.taskPlace.text.toString(),
-            isDone = binding.checkBoxDone.isChecked
+            isDone = binding.checkBoxDone.isChecked,
+            priority = setPriority()
         )
 
         setClickableEditText(binding.taskTitle, false)
@@ -171,6 +193,10 @@ class DetailsFragment : Fragment() {
         setClickableEditText(binding.taskTitle, false)
         setClickableCheckBox(binding.checkBoxReminder, false)
         setClickableCheckBox(binding.checkBoxDone, false)
+
+        setClickableCheckBox(binding.highPriority, true)
+        setClickableCheckBox(binding.normalPriority, true)
+        setClickableCheckBox(binding.lowPriority, true)
         binding.btnSave.visibility = View.GONE
 
         if(updateTask == task) return EQUAL_TASKS

@@ -11,11 +11,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.example.taskorganizer.R
 import com.example.taskorganizer.databinding.CreateFragmentBinding
 import com.example.taskorganizer.domain.models.TaskModel
 import com.example.taskorganizer.app.APP
 import com.example.taskorganizer.app.App
 import com.example.taskorganizer.presentation.utils.Notify
+import com.example.taskorganizer.presentation.utils.Priority
 import java.util.*
 import javax.inject.Inject
 
@@ -102,7 +104,8 @@ class CreateFragment : Fragment() {
             description = binding.taskDescription.text.toString(),
             deadline = binding.taskDeadline.text.toString(),
             isReminder = binding.checkBoxReminder.isChecked,
-            place = binding.taskPlace.text.toString()
+            place = binding.taskPlace.text.toString(),
+            priority = setPriority()
         )
         if (viewModel.isEmpty(task)) {
             return Notify.EMPTY_TASK
@@ -114,14 +117,20 @@ class CreateFragment : Fragment() {
         }
     }
 
+    private fun setPriority() = when(binding.radioGroup.checkedRadioButtonId){
+        R.id.high_priority -> Priority.HIGH.ordinal
+        R.id.normal_priority -> Priority.NORMAL.ordinal
+        else -> Priority.LOW.ordinal
+    }
+
     private fun startProgressBar(){
         binding.scrollView.visibility = View.INVISIBLE
         binding.progressBar.visibility = View.VISIBLE
     }
 
     private fun stopProgressBar(){
-        binding.progressBar.visibility = View.VISIBLE
-        binding.scrollView.visibility = View.INVISIBLE
+        binding.progressBar.visibility = View.INVISIBLE
+        binding.scrollView.visibility = View.VISIBLE
     }
 
 }

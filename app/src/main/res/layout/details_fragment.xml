@@ -136,7 +136,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/vertical_margin"
-                android:layout_marginBottom="@dimen/vertical_margin"
                 app:cardElevation="@dimen/card_elevation">
 
                 <LinearLayout
@@ -164,6 +163,51 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/vertical_margin"
+                android:layout_marginTop="@dimen/vertical_margin"
+                app:cardElevation="@dimen/card_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioGroup
+                        android:id="@+id/radio_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/secondary_green_016"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/high_priority"
+                            style="@style/radioButtonDetails"
+                            android:text="@string/high_priority"
+                            android:textColor="@color/high_priority" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/normal_priority"
+                            style="@style/radioButtonDetails"
+                            android:layout_gravity="center"
+                            android:text="@string/normal_priority"
+                            android:textColor="@color/normal_priority" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/low_priority"
+                            style="@style/radioButtonDetails"
+                            android:checked="true"
+                            android:text="@string/low_priority"
+                            android:textColor="@color/low_priority" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="@dimen/card_elevation">
@@ -177,7 +221,8 @@
                     android:padding="@dimen/excuse_padding"
                     android:text="@string/task_excuse"
                     android:textAppearance="@style/text_title_style"
-                    android:textSize="@dimen/text_size_task_excuse" />
+                    android:textSize="@dimen/text_size_task_excuse"
+                    tools:ignore="SpUsage" />
             </androidx.cardview.widget.CardView>
 
             <View

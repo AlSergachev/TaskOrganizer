@@ -144,6 +144,51 @@
                     android:textAppearance="@style/text_task_data" />
             </androidx.cardview.widget.CardView>
 
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vertical_margin"
+                app:cardElevation="@dimen/card_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioGroup
+                        android:id="@+id/radio_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/secondary_green_016"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/high_priority"
+                            style="@style/radioButton"
+                            android:text="@string/high_priority"
+                            android:textColor="@color/high_priority" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/normal_priority"
+                            style="@style/radioButton"
+                            android:layout_gravity="center"
+                            android:text="@string/normal_priority"
+                            android:textColor="@color/normal_priority" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/low_priority"
+                            style="@style/radioButton"
+                            android:checked="true"
+                            android:text="@string/low_priority"
+                            android:textColor="@color/low_priority" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/bottom_margin" />
@@ -152,13 +197,13 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_save"
+        style="@style/button"
         android:layout_width="0dp"
         android:layout_height="@dimen/bottom_height"
         android:text="@string/save_task"
-        style="@style/button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

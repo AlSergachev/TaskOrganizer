@@ -32,5 +32,8 @@ data class TaskModel(
     var isDone: Boolean = false,
 
     @ColumnInfo
-    var excuse: String = ""
+    var excuse: String = "",
+
+    @ColumnInfo
+    var priority: Int = 0
 ): Parcelable

@@ -18,7 +18,9 @@ class SaveTaskUseCase(
         try {
             MainScope().launch(Dispatchers.IO) {
                 withContext(Dispatchers.IO) {
-                    if (task.excuse == "") task.excuse = addExcuse()
+                    if (task.excuse == "") {
+                        task.excuse = addExcuse()
+                    }
                 }
                 taskRepository.insertTask(task)
             }

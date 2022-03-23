@@ -15,4 +15,7 @@
     <string name="title_create">Create New Task</string>
     <string name="title_details">Show Task Details</string>
     <string name="title_all">All Tasks</string>
+    <string name="high_priority">Высокий приоритет</string>
+    <string name="normal_priority">Средний приоритет</string>
+    <string name="low_priority">Низкий приоритет</string>
 </resources>

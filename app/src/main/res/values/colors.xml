@@ -20,4 +20,7 @@
     <color name="secondary_green_016">#298EE4AF</color>
     <color name="secondary_green_007">#128EE4AF</color>
     <color name="clear">#00FFFFFF</color>
+    <color name="high_priority">#D5FF454A</color>
+    <color name="normal_priority">#FFA747</color>
+    <color name="low_priority">#E248F12B</color>
 </resources>

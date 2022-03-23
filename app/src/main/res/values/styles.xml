@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="text_title_style" parent="TextAppearance.AppCompat.Body1">
         <item name="fontFamily">@font/work_sans_bold</item>
         <item name="android:fontFamily">@font/work_sans_bold</item>
@@ -10,16 +11,18 @@
         <item name="android:textColor">@color/dark_blue</item>
     </style>
 
-    <style name="text_title" parent ="text_style" >
+    <style name="text_title" parent="text_style">
         <item name="android:textSize">@dimen/text_size_title</item>
         <item name="android:textStyle">bold</item>
         <item name="android:letterSpacing">0.1</item>
     </style>
-    <style name="text_task_title" parent ="text_style" >
+
+    <style name="text_task_title" parent="text_style">
         <item name="android:textSize">@dimen/text_size_task_title</item>
         <item name="android:textStyle">bold</item>
     </style>
-    <style name="text_task_data" parent ="text_style" >
+
+    <style name="text_task_data" parent="text_style">
         <item name="android:textSize">@dimen/text_size_task_data</item>
     </style>
 
@@ -37,6 +40,21 @@
 
     </style>
 
+    <style name="radioButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="radioButtonDetails" parent="radioButton">
+        <item name="android:clickable">false</item>
+        <item name="android:longClickable">false</item>
+    </style>
 
     <style name="task">
         <item name="android:paddingTop">12dp</item>
@@ -44,12 +62,12 @@
         <item name="android:paddingStart">15dp</item>
         <item name="android:paddingEnd">5dp</item>
     </style>
+
     <style name="task_details" parent="task">
         <item name="android:longClickable">false</item>
         <item name="android:focusable">false</item>
         <item name="android:cursorVisible">false</item>
     </style>
-
 
     <style name="check_box_details">
         <item name="android:layout_width">@dimen/width_check_box</item>

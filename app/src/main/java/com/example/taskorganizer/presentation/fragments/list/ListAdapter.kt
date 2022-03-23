@@ -14,7 +14,9 @@ import com.example.taskorganizer.R
 import com.example.taskorganizer.app.APP
 import com.example.taskorganizer.domain.models.TaskModel
 import com.example.taskorganizer.presentation.utils.Constants
+import com.example.taskorganizer.presentation.utils.Priority
 
+@Suppress("DEPRECATION")
 class ListAdapter(private val onUpdateCallback: (TaskModel, Int) -> Unit) :
     RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
 
@@ -26,6 +28,7 @@ class ListAdapter(private val onUpdateCallback: (TaskModel, Int) -> Unit) :
         val isDone: AppCompatCheckBox = view.findViewById(R.id.item_check_box_done)
         val isReminderView: FrameLayout = view.findViewById(R.id.item_reminder_view)
         val isReminder: AppCompatImageButton = view.findViewById(R.id.item_reminder)
+        val priority: View = view.findViewById(R.id.priority)
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -48,9 +51,8 @@ class ListAdapter(private val onUpdateCallback: (TaskModel, Int) -> Unit) :
             View.INVISIBLE
         }
         holder.isDone.isChecked = listTask[position].isDone
-        holder.isDone.setOnClickListener {
+        holder.priority.setBackgroundColor(getPriority(listTask[position]))
 
-        }
 
     }
 
@@ -70,6 +72,12 @@ class ListAdapter(private val onUpdateCallback: (TaskModel, Int) -> Unit) :
         holder.itemView.setOnClickListener {
             clickTask(listTask[holder.adapterPosition])
         }
+    }
+
+    private fun getPriority(task: TaskModel) = when(task.priority){
+        Priority.HIGH.ordinal -> APP.resources.getColor(R.color.high_priority)
+        Priority.NORMAL.ordinal -> APP.resources.getColor(R.color.normal_priority)
+        else -> APP.resources.getColor(R.color.low_priority)
     }
 
     private fun clickTask(task: TaskModel) {

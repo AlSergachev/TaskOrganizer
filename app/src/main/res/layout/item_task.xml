@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/vertical_margin"
@@ -12,14 +13,22 @@
         android:background="@color/secondary_green_086"
         android:orientation="horizontal">
 
+        <View
+            android:id="@+id/priority"
+            android:layout_width="5dp"
+            android:layout_height="0dp"
+            android:background="@color/low_priority"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/item_check_box_done"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/priority"
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
@@ -74,6 +83,8 @@
                 android:src="@drawable/ic_reminder"
                 android:visibility="visible" />
         </FrameLayout>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
