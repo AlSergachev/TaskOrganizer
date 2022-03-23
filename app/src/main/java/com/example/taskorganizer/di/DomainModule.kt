@@ -1,5 +1,6 @@
 package com.example.taskorganizer.di
 
+import com.example.taskorganizer.domain.repository.ExcuseRepository
 import com.example.taskorganizer.domain.repository.TaskRepository
 import com.example.taskorganizer.domain.usecase.DeleteTaskUseCase
 import com.example.taskorganizer.domain.usecase.GetTaskListUseCase
@@ -21,7 +22,13 @@ class DomainModule {
     }
 
     @Provides
-    fun provideSaveTaskUseCase(repository: TaskRepository): SaveTaskUseCase {
-        return SaveTaskUseCase(repository = repository)
+    fun provideSaveTaskUseCase(
+        taskRepository: TaskRepository,
+        excuseRepository: ExcuseRepository
+    ): SaveTaskUseCase {
+        return SaveTaskUseCase(
+            taskRepository = taskRepository,
+            excuseRepository = excuseRepository
+        )
     }
 }

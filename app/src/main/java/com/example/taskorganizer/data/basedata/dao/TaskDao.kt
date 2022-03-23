@@ -1,4 +1,4 @@
-package com.example.taskorganizer.data.dao
+package com.example.taskorganizer.data.basedata.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

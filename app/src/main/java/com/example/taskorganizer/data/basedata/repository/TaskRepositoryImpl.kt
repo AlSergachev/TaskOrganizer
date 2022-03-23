@@ -1,7 +1,7 @@
-package com.example.taskorganizer.data.repository
+package com.example.taskorganizer.data.basedata.repository
 
 import androidx.lifecycle.LiveData
-import com.example.taskorganizer.data.dao.TaskDao
+import com.example.taskorganizer.data.basedata.dao.TaskDao
 import com.example.taskorganizer.domain.models.TaskModel
 import com.example.taskorganizer.domain.repository.TaskRepository
 

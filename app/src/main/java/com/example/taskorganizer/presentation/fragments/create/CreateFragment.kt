@@ -50,7 +50,9 @@ class CreateFragment : Fragment() {
 
     private fun setListener() {
         binding.btnSave.setOnClickListener {
+            startProgressBar()
             val value = saveTask()
+            stopProgressBar()
             APP.toast(value)
             if (value == Notify.SUCCESS_SAVE) {
                 APP.toListFragment()
@@ -94,6 +96,7 @@ class CreateFragment : Fragment() {
     }
 
     private fun saveTask(): Notify {
+
         val task = TaskModel(
             title = binding.taskTitle.text.toString(),
             description = binding.taskDescription.text.toString(),
@@ -109,6 +112,16 @@ class CreateFragment : Fragment() {
         } else {
             Notify.ERROR_SAVE
         }
+    }
+
+    private fun startProgressBar(){
+        binding.scrollView.visibility = View.INVISIBLE
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    private fun stopProgressBar(){
+        binding.progressBar.visibility = View.VISIBLE
+        binding.scrollView.visibility = View.INVISIBLE
     }
 
 }

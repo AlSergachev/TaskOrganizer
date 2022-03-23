@@ -2,8 +2,10 @@ package com.example.taskorganizer.di
 
 import android.content.Context
 import com.example.taskorganizer.data.basedata.TaskBaseData
-import com.example.taskorganizer.data.dao.TaskDao
-import com.example.taskorganizer.data.repository.TaskRepositoryImpl
+import com.example.taskorganizer.data.basedata.dao.TaskDao
+import com.example.taskorganizer.data.basedata.repository.TaskRepositoryImpl
+import com.example.taskorganizer.data.retrofit.repository.ExcuseRepositoryImpl
+import com.example.taskorganizer.domain.repository.ExcuseRepository
 import com.example.taskorganizer.domain.repository.TaskRepository
 import dagger.Module
 import dagger.Provides
@@ -26,6 +28,12 @@ class DataModule {
     fun provideTaskRepository(dao: TaskDao):TaskRepository{
         return TaskRepositoryImpl(taskDao = dao)
     }
+
+    @Provides @Singleton
+    fun provideExcuseRepository():ExcuseRepository{
+        return ExcuseRepositoryImpl()
+    }
+
 
 
 }

@@ -1,8 +1,8 @@
 package com.example.taskorganizer.di
 
-import android.app.Application
 import com.example.taskorganizer.data.basedata.TaskBaseData
-import com.example.taskorganizer.data.dao.TaskDao
+import com.example.taskorganizer.data.basedata.dao.TaskDao
+import com.example.taskorganizer.domain.repository.ExcuseRepository
 import com.example.taskorganizer.domain.repository.TaskRepository
 import com.example.taskorganizer.presentation.MainActivity
 import com.example.taskorganizer.presentation.fragments.create.CreateFragment
@@ -22,6 +22,7 @@ interface AppComponent {
 
 //    val context: Application
     val dataBase : TaskBaseData
-    val repository: TaskRepository
+    val taskRepository: TaskRepository
+    val excuseRepository: ExcuseRepository
     val dao: TaskDao
 }
