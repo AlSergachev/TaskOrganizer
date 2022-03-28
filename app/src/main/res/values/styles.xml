@@ -32,16 +32,10 @@
         <item name="android:layout_height">@dimen/size_button</item>
         <item name="android:layout_margin">@dimen/margin_button</item>
         <item name="android:elevation">5dp</item>
-        <!--        <item name="android:layout_marginTop">@dimen/bottom_margin_vertical</item>-->
-<!--        <item name="android:layout_marginBottom">@dimen/bottom_margin_vertical</item>-->
-<!--        <item name="android:layout_marginStart">@dimen/bottom_margin_horizontal</item>-->
-<!--        <item name="android:layout_marginEnd">@dimen/bottom_margin_horizontal</item>-->
         <item name="android:background">@drawable/shape_fragments_button</item>
-        <item name="android:textAllCaps">false</item>
         <item name="android:padding">@dimen/padding_in_button</item>
         <item name="android:textSize">@dimen/text_size_button</item>
         <item name="android:textColor">@color/dark_blue</item>
-
     </style>
 
     <style name="radioButton">
@@ -78,6 +72,13 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:clickable">false</item>
         <item name="android:longClickable">false</item>
+    </style>
+
+    <style name="radioButtonSortDialog">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textSize">16dp</item>
     </style>
 
 </resources>

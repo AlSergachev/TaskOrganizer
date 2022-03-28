@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/radio_group_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/sort_dialog_margin_vertical"
+        android:background="@drawable/shape_dialog_background"
+        android:orientation="vertical"
+        android:padding="@dimen/sort_dialog_padding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/by_default"
+            style="@style/radioButtonSortDialog"
+            android:text="@string/sort_by_default" />
+
+        <RadioButton
+            android:id="@+id/by_priority"
+            style="@style/radioButtonSortDialog"
+            android:text="@string/sort_by_priority" />
+
+        <RadioButton
+            android:id="@+id/by_deadline"
+            style="@style/radioButtonSortDialog"
+            android:text="@string/sort_by_deadline_data" />
+
+        <RadioButton
+            android:id="@+id/by_creation"
+            style="@style/radioButtonSortDialog"
+            android:text="@string/sort_by_creation_data" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_dialog_title"
+        android:elevation="@dimen/standard_elevation"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="@string/select_the_sort_type"
+        android:textColor="@color/dark_blue"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@id/radio_group_dialog"
+        app:layout_constraintEnd_toEndOf="@id/radio_group_dialog"
+        app:layout_constraintStart_toStartOf="@id/radio_group_dialog"
+        app:layout_constraintTop_toTopOf="@id/radio_group_dialog"
+        tools:ignore="SpUsage" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_green"
+        android:elevation="@dimen/standard_elevation"
+        android:letterSpacing="0.2"
+        android:paddingHorizontal="20dp"
+        android:text="@string/confirm"
+        android:textColor="@color/dark_blue"
+        app:layout_constraintBottom_toBottomOf="@+id/radio_group_dialog"
+        app:layout_constraintEnd_toEndOf="@+id/radio_group_dialog"
+        app:layout_constraintStart_toStartOf="@+id/radio_group_dialog"
+        app:layout_constraintTop_toBottomOf="@+id/radio_group_dialog" />
+</androidx.constraintlayout.widget.ConstraintLayout>

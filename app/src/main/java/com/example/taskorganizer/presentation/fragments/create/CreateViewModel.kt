@@ -13,7 +13,7 @@ class CreateViewModel(
     }
 
     fun isEmpty(task: TaskModel):Boolean{
-        return task.title == "" && task.description == "" && task.place == "" && task.deadline == ""
+        return task.title == "" && task.description == ""
     }
 
 }

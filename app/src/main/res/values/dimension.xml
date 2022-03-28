@@ -16,4 +16,8 @@
     <dimen name="size_button">60dp</dimen>
     <dimen name="padding_in_button">10dp</dimen>
     <dimen name="margin_button">20dp</dimen>
+    <dimen name="sort_dialog_padding">30dp</dimen>
+    <dimen name="sort_dialog_margin_vertical">50dp</dimen>
+    <dimen name="standard_elevation">5dp</dimen>
+
 </resources>
