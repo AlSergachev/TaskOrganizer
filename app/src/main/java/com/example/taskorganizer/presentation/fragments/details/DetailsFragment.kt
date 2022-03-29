@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CheckBox
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.taskorganizer.R
@@ -32,12 +31,13 @@ class DetailsFragment : Fragment() {
     private lateinit var task: TaskModel
     private lateinit var binding: DetailsFragmentBinding
     private lateinit var viewModel: DetailsViewModel
-    private lateinit var calendar: Calendar
-    private var mYear = 0
-    private var mMonth = 0
-    private var mDay = 0
-    private var mHour = 0
-    private var mMinute = 0
+    private var deadlineLong: Long = 0
+//    private lateinit var calendar: Calendar
+//    private var mYear = 0
+//    private var mMonth = 0
+//    private var mDay = 0
+//    private var mHour = 0
+//    private var mMinute = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +58,9 @@ class DetailsFragment : Fragment() {
     private fun renderState() = with(binding) {
         taskTitle.setText(task.title)
         taskDescription.setText(task.description)
-        taskDeadline.text = task.deadline
+        deadlineLong = task.deadline
+        taskDeadline.text =
+            DateFormat.format(Constants.DeadlineFormat, deadlineLong).toString()
         checkBoxReminder.isChecked = task.isReminder
         taskPlace.setText(task.place)
         checkBoxDone.isChecked = task.isDone
@@ -93,8 +95,31 @@ class DetailsFragment : Fragment() {
             }
         }
         binding.taskDeadline.setOnClickListener {
-            setDeadline()
+            pickDateTime()
         }
+    }
+
+    private fun pickDateTime() {
+        val currentDateTime = Calendar.getInstance()
+        val startYear = currentDateTime.get(Calendar.YEAR)
+        val startMonth = currentDateTime.get(Calendar.MONTH)
+        val startDay = currentDateTime.get(Calendar.DAY_OF_MONTH)
+        val startHour = currentDateTime.get(Calendar.HOUR_OF_DAY)
+        val startMinute = currentDateTime.get(Calendar.MINUTE)
+
+        DatePickerDialog(requireContext(), { _, year, month, day ->
+            TimePickerDialog(requireContext(), { _, hour, minute ->
+                val pickedDateTime = Calendar.getInstance()
+                pickedDateTime.set(year, month, day, hour, minute)
+                setDeadline(pickedDateTime)
+            }, startHour, startMinute, false).show()
+        }, startYear, startMonth, startDay).show()
+    }
+
+    private fun setDeadline(calendar:Calendar){
+        deadlineLong = calendar.timeInMillis
+        binding.taskDeadline.text =
+            DateFormat.format(Constants.DeadlineFormat, deadlineLong).toString()
     }
 
     private fun initialization() {
@@ -135,37 +160,37 @@ class DetailsFragment : Fragment() {
         isFocusable = bool
     }
 
-    @Suppress("RedundantSamConstructor")
-    private fun setDeadline() {
-        calendar = Calendar.getInstance()
-        getCurrentDateAndTime()
-        DatePickerDialog(
-            APP,
-            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                TimePickerDialog(
-                    APP,
-                    TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
-                        mHour = hourOfDay
-                        mMinute = minute
-                        calendar.set(mYear, mMonth, mDay, mHour, mMinute)
-                        binding.taskDeadline.text =
-                            DateFormat.format("EEE, d MMM yyyy HH:mm", calendar).toString()
-                    }, mHour, mMinute, true
-                ).show()
-                mYear = year
-                mMonth = month
-                mDay = dayOfMonth
-            }, mYear, mMonth, mDay
-        ).show()
-    }
-
-    private fun getCurrentDateAndTime() {
-        mYear = calendar.get(Calendar.YEAR)
-        mMonth = calendar.get(Calendar.MONTH)
-        mDay = calendar.get(Calendar.DAY_OF_MONTH)
-        mHour = calendar.get(Calendar.HOUR)
-        mMinute = calendar.get(Calendar.MINUTE)
-    }
+//    @Suppress("RedundantSamConstructor")
+//    private fun setDeadline() {
+//        calendar = Calendar.getInstance()
+//        getCurrentDateAndTime()
+//        DatePickerDialog(
+//            APP,
+//            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+//                TimePickerDialog(
+//                    APP,
+//                    TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+//                        mHour = hourOfDay
+//                        mMinute = minute
+//                        calendar.set(mYear, mMonth, mDay, mHour, mMinute)
+//                        binding.taskDeadline.text =
+//                            DateFormat.format("EEE, d MMM yyyy HH:mm", calendar).toString()
+//                    }, mHour, mMinute, true
+//                ).show()
+//                mYear = year
+//                mMonth = month
+//                mDay = dayOfMonth
+//            }, mYear, mMonth, mDay
+//        ).show()
+//    }
+//
+//    private fun getCurrentDateAndTime() {
+//        mYear = calendar.get(Calendar.YEAR)
+//        mMonth = calendar.get(Calendar.MONTH)
+//        mDay = calendar.get(Calendar.DAY_OF_MONTH)
+//        mHour = calendar.get(Calendar.HOUR)
+//        mMinute = calendar.get(Calendar.MINUTE)
+//    }
 
     private fun setPriority() = when (binding.radioGroup.checkedRadioButtonId) {
         R.id.high_priority -> Priority.HIGH.ordinal
@@ -186,7 +211,7 @@ class DetailsFragment : Fragment() {
             id = task.id,
             title = binding.taskTitle.text.toString(),
             description = binding.taskDescription.text.toString(),
-            deadline = binding.taskDeadline.text.toString(),
+            deadline = deadlineLong,
             isReminder = binding.checkBoxReminder.isChecked,
             place = binding.taskPlace.text.toString(),
             isDone = binding.checkBoxDone.isChecked,

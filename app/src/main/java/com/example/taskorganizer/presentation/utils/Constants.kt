@@ -5,4 +5,5 @@ object Constants {
     const val IS_DONE: Int = 1
     const val IS_REMINDER: Int = 2
     const val TAG: String = "!@#$"
+    const val DeadlineFormat: String = "EEE, d MMM yyyy HH:mm"
 }

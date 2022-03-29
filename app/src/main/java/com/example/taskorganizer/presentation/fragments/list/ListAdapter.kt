@@ -2,6 +2,7 @@ package com.example.taskorganizer.presentation.fragments.list
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +45,8 @@ class ListAdapter(private val onUpdateCallback: (TaskModel, Int) -> Unit) :
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         holder.title.text = listTask[position].title
-        holder.deadline.text = listTask[position].deadline
+        holder.deadline.text =
+            DateFormat.format(Constants.DeadlineFormat, listTask[position].deadline).toString()
         holder.isReminder.visibility = if (listTask[position].isReminder) {
             View.VISIBLE
         } else {
@@ -74,7 +76,7 @@ class ListAdapter(private val onUpdateCallback: (TaskModel, Int) -> Unit) :
         }
     }
 
-    private fun getPriority(task: TaskModel) = when(task.priority){
+    private fun getPriority(task: TaskModel) = when (task.priority) {
         Priority.HIGH.ordinal -> APP.resources.getColor(R.color.high_priority)
         Priority.NORMAL.ordinal -> APP.resources.getColor(R.color.normal_priority)
         else -> APP.resources.getColor(R.color.low_priority)

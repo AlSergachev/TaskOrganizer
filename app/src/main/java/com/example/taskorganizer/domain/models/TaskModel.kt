@@ -20,7 +20,7 @@ data class TaskModel(
     var description: String = "",
 
     @ColumnInfo
-    var deadline: String = "",
+    var deadline: Long = 0,
 
     @ColumnInfo
     var isReminder: Boolean = false,

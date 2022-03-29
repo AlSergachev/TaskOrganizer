@@ -12,8 +12,10 @@ class CreateViewModel(
         return saveTaskUseCase.execute(newTask)
     }
 
-    fun isEmpty(task: TaskModel):Boolean{
+    fun isEmpty(task: TaskModel): Boolean {
         return task.title == "" && task.description == ""
     }
 
 }
+
+
