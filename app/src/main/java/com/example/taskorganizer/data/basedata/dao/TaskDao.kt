@@ -17,4 +17,7 @@ interface TaskDao {
 
     @Query("SELECT * from task_table ORDER BY priority DESC")
     fun getListSortedByPriority(): List<TaskModel>
+
+    @Query("SELECT * from task_table ORDER BY created DESC")
+    fun getListSortedByCreated(): List<TaskModel>
 }

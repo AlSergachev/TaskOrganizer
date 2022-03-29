@@ -23,6 +23,7 @@ class TaskRepositoryImpl(private val taskDao: TaskDao) : TaskRepository {
     override fun sortBy(sortType: SortType) {
         when(sortType){
             SortType.PRIORITY -> taskList.postValue(taskDao.getListSortedByPriority())
+            SortType.CREATION -> taskList.postValue(taskDao.getListSortedByCreated())
             else -> taskList.postValue(taskDao.getListTasks())
         }
     }
