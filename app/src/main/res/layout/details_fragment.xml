@@ -221,6 +221,7 @@
                     android:gravity="center"
                     android:padding="@dimen/excuse_padding"
                     android:text="@string/task_excuse"
+                    android:visibility="visible"
                     android:textAppearance="@style/text_title_style"
                     android:textSize="@dimen/text_size_task_excuse"
                     tools:ignore="SpUsage" />

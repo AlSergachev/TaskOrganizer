@@ -62,9 +62,13 @@ class DetailsFragment : Fragment() {
         checkBoxReminder.isChecked = task.isReminder
         taskPlace.setText(task.place)
         checkBoxDone.isChecked = task.isDone
-        taskExcuse.text = task.excuse
         radioGroup.clearCheck()
         getPriority(task)
+        if (task.excuse == "null" || task.excuse == "") {
+            taskExcuse.visibility = View.GONE
+        } else {
+            taskExcuse.text = task.excuse
+        }
     }
 
 
@@ -83,7 +87,7 @@ class DetailsFragment : Fragment() {
             APP.toast(value)
             if (value == SUCCESS_SAVE) {
                 APP.toListFragment()
-            }else{
+            } else {
                 editTask()
             }
         }
@@ -162,13 +166,13 @@ class DetailsFragment : Fragment() {
         mMinute = calendar.get(Calendar.MINUTE)
     }
 
-    private fun setPriority() = when(binding.radioGroup.checkedRadioButtonId){
+    private fun setPriority() = when (binding.radioGroup.checkedRadioButtonId) {
         R.id.high_priority -> Priority.HIGH.ordinal
         R.id.normal_priority -> Priority.NORMAL.ordinal
         else -> Priority.LOW.ordinal
     }
 
-    private fun getPriority(task: TaskModel) = when(task.priority){
+    private fun getPriority(task: TaskModel) = when (task.priority) {
         Priority.HIGH.ordinal -> binding.highPriority.isChecked = true
         Priority.NORMAL.ordinal -> binding.normalPriority.isChecked = true
         else -> binding.lowPriority.isChecked = true
@@ -188,13 +192,13 @@ class DetailsFragment : Fragment() {
             priority = setPriority()
         )
 
-        if(updateTask == task) return EQUAL_TASKS
+        if (updateTask == task) return EQUAL_TASKS
         if (!viewModel.save(updateTask)) return ERROR_SAVE
         return SUCCESS_SAVE
     }
 
     private fun deleteTask(): Notify {
-        return if(!viewModel.delete(task)) ERROR_DELETE
+        return if (!viewModel.delete(task)) ERROR_DELETE
         else SUCCESS_DELETE
     }
 

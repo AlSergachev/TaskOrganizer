@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RadioGroup
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,6 +39,7 @@ class ListFragment : Fragment() {
         return binding.root
     }
 
+    @Suppress("DEPRECATION")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (activity?.applicationContext as App).appComponent.injectListFragment(this)
@@ -56,11 +56,12 @@ class ListFragment : Fragment() {
         recyclerView.adapter = adapter
         viewModel.sortBy(viewModel.sortType)
 
-        viewModel.getList().observe(viewLifecycleOwner, Observer { newList ->
+        viewModel.getList().observe(viewLifecycleOwner) { newList ->
             updateList(newList)
-        })
+        }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun updateList(list: List<TaskModel>) {
         adapter.setList(list)
         adapter.notifyDataSetChanged()
@@ -72,6 +73,9 @@ class ListFragment : Fragment() {
         }
         binding.btnSort.setOnClickListener {
             showSortDialog()
+        }
+        binding.btnUpdate.setOnClickListener{
+            updateList(viewModel.getList().value!!)
         }
     }
 
@@ -126,6 +130,7 @@ class ListFragment : Fragment() {
             Constants.IS_REMINDER -> task.isReminder = !task.isReminder
         }
         viewModel.save(task)
+        updateList(viewModel.getList().value!!)
     }
 }
 
