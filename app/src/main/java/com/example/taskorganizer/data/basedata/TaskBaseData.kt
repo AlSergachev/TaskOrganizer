@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.taskorganizer.data.basedata.dao.TaskDao
 import com.example.taskorganizer.domain.models.TaskModel
 
-@Database(entities = [TaskModel::class], version = 2, exportSchema = false)
+@Database(entities = [TaskModel::class], version = 3, exportSchema = false)
 abstract class TaskBaseData : RoomDatabase() {
     abstract fun getTaskDao(): TaskDao
 

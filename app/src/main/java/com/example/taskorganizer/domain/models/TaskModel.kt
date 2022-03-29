@@ -1,11 +1,11 @@
 package com.example.taskorganizer.domain.models
 
 import android.os.Parcelable
-//import android.text.format.Time
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
+import java.text.DateFormat
 
 @Entity(tableName = "task_table")
 @Parcelize
@@ -35,5 +35,11 @@ data class TaskModel(
     var excuse: String = "",
 
     @ColumnInfo
-    var priority: Int = 0
-): Parcelable
+    var priority: Int = 0,
+
+    @ColumnInfo
+    var created: Long = System.currentTimeMillis()
+) : Parcelable {
+    val createdDateFormatted: String
+        get() = DateFormat.getDateTimeInstance().format(created)
+}

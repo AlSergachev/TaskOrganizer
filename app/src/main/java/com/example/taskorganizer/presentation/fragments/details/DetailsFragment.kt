@@ -63,6 +63,7 @@ class DetailsFragment : Fragment() {
         taskPlace.setText(task.place)
         checkBoxDone.isChecked = task.isDone
         radioGroup.clearCheck()
+        created.text = task.createdDateFormatted
         getPriority(task)
         if (task.excuse == "null" || task.excuse == "") {
             taskExcuse.visibility = View.GONE
