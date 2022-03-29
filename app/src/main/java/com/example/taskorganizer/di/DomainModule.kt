@@ -3,6 +3,7 @@ package com.example.taskorganizer.di
 import com.example.taskorganizer.domain.repository.ExcuseRepository
 import com.example.taskorganizer.domain.repository.TaskRepository
 import com.example.taskorganizer.domain.usecase.DeleteTaskUseCase
+import com.example.taskorganizer.domain.usecase.SortTaskListByUseCase
 import com.example.taskorganizer.domain.usecase.GetTaskListUseCase
 import com.example.taskorganizer.domain.usecase.SaveTaskUseCase
 import dagger.Module
@@ -14,6 +15,11 @@ class DomainModule {
     @Provides
     fun provideGetTaskListUseCase(repository: TaskRepository): GetTaskListUseCase {
         return GetTaskListUseCase(repository = repository)
+    }
+
+    @Provides
+    fun provideSortTaskListByUseCase(repository: TaskRepository): SortTaskListByUseCase {
+        return SortTaskListByUseCase(repository = repository)
     }
 
     @Provides

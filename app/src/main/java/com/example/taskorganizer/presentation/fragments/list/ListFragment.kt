@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RadioGroup
 import android.widget.Toast
-import androidx.core.view.get
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,11 +54,16 @@ class ListFragment : Fragment() {
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         recyclerView.adapter = adapter
+        viewModel.sortBy(viewModel.sortType)
 
         viewModel.getList().observe(viewLifecycleOwner, Observer { newList ->
-            adapter.setList(newList)
-            adapter.notifyDataSetChanged()
+            updateList(newList)
         })
+    }
+
+    private fun updateList(list: List<TaskModel>) {
+        adapter.setList(list)
+        adapter.notifyDataSetChanged()
     }
 
     private fun setListener() {
@@ -70,7 +74,6 @@ class ListFragment : Fragment() {
             showSortDialog()
         }
     }
-
 
 
     private fun showSortDialog() {
@@ -85,24 +88,33 @@ class ListFragment : Fragment() {
         val radioGroup = dialog.findViewById(R.id.radio_group_dialog) as RadioGroup
 
         btnConfirm.setOnClickListener {
+            val message: String
             val sortType = when (radioGroup.checkedRadioButtonId) {
-                R.id.by_default -> 0
-                R.id.by_priority -> 1
-                R.id.by_deadline -> 2
-                R.id.by_creation -> 3
-                else -> -1
+                R.id.by_default -> {
+                    message = "Sort by default"
+                    SortType.DEFAULT
+                }
+                R.id.by_priority -> {
+                    message = "Sort by priority"
+                    SortType.PRIORITY
+                }
+                R.id.by_deadline -> {
+                    message = "Sort by deadline data"
+                    SortType.DEADLINE
+                }
+                R.id.by_creation -> {
+                    message = "Sort by creation data"
+                    SortType.CREATION
+                }
+                else -> {
+                    message = "The sorting type is not selected"
+                    SortType.NOT_SELECTED
+                }
             }
-            sortList(sortType)
+            showToast(message)
+            viewModel.sortBy(sortType)
             dialog.dismiss()
         }
-    }
-
-    private fun sortList(type: Int) = when (type) {
-        SortType.DEFAULT.ordinal -> showToast("Sort by default")
-        SortType.PRIORITY.ordinal -> showToast("Sort by priority")
-        SortType.DEADLINE.ordinal -> showToast("Sort by deadline data")
-        SortType.CREATION.ordinal -> showToast("Sort by creation data")
-        else -> showToast("The sorting type is not selected")
     }
 
     private fun showToast(message: String) =
@@ -115,6 +127,5 @@ class ListFragment : Fragment() {
         }
         viewModel.save(task)
     }
-
 }
 

@@ -2,6 +2,7 @@ package com.example.taskorganizer.di
 
 import android.content.Context
 import com.example.taskorganizer.domain.usecase.DeleteTaskUseCase
+import com.example.taskorganizer.domain.usecase.SortTaskListByUseCase
 import com.example.taskorganizer.domain.usecase.GetTaskListUseCase
 import com.example.taskorganizer.domain.usecase.SaveTaskUseCase
 import com.example.taskorganizer.presentation.fragments.create.CreateViewModelFactory
@@ -36,11 +37,13 @@ class PresentationModule(val context: Context) {
     @Provides
     fun provideListViewModelFactory(
         getTaskListUseCase: GetTaskListUseCase,
-        saveTaskUseCase: SaveTaskUseCase
+        saveTaskUseCase: SaveTaskUseCase,
+        sortTaskListByUseCase: SortTaskListByUseCase
     ): ListViewModelFactory {
         return ListViewModelFactory(
             getTaskListUseCase = getTaskListUseCase,
-            saveTaskUseCase = saveTaskUseCase
+            saveTaskUseCase = saveTaskUseCase,
+            sortTaskListByUseCase = sortTaskListByUseCase
         )
     }
 

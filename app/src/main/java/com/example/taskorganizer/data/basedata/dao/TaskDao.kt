@@ -1,6 +1,5 @@
 package com.example.taskorganizer.data.basedata.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.taskorganizer.domain.models.TaskModel
 
@@ -14,5 +13,8 @@ interface TaskDao {
     fun delete(task: TaskModel)
 
     @Query("SELECT * from task_table")
-    fun getListTasks(): LiveData<List<TaskModel>>
+    fun getListTasks(): List<TaskModel>
+
+    @Query("SELECT * from task_table ORDER BY priority DESC")
+    fun getListSortedByPriority(): List<TaskModel>
 }

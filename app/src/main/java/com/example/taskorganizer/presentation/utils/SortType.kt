@@ -4,5 +4,6 @@ enum class SortType {
     DEFAULT,
     PRIORITY,
     DEADLINE,
-    CREATION
+    CREATION,
+    NOT_SELECTED
 }
