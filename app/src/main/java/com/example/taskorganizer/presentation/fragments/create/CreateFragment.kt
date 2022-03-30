@@ -2,8 +2,6 @@
 
 package com.example.taskorganizer.presentation.fragments.create
 
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.format.DateFormat
 import androidx.fragment.app.Fragment
@@ -57,28 +55,11 @@ class CreateFragment : Fragment() {
             }
         }
         binding.taskDeadline.setOnClickListener {
-            pickDateTime()
+            viewModel.setDeadline(requireContext(), ::saveDeadline)
         }
     }
 
-    private fun pickDateTime() {
-        val currentDateTime = Calendar.getInstance()
-        val startYear = currentDateTime.get(Calendar.YEAR)
-        val startMonth = currentDateTime.get(Calendar.MONTH)
-        val startDay = currentDateTime.get(Calendar.DAY_OF_MONTH)
-        val startHour = currentDateTime.get(Calendar.HOUR_OF_DAY)
-        val startMinute = currentDateTime.get(Calendar.MINUTE)
-
-        DatePickerDialog(requireContext(), { _, year, month, day ->
-            TimePickerDialog(requireContext(), { _, hour, minute ->
-                val pickedDateTime = Calendar.getInstance()
-                pickedDateTime.set(year, month, day, hour, minute)
-                setDeadline(pickedDateTime)
-            }, startHour, startMinute, false).show()
-        }, startYear, startMonth, startDay).show()
-    }
-
-    private fun setDeadline(calendar:Calendar){
+    private fun saveDeadline(calendar: Calendar) {
         deadlineLong = calendar.timeInMillis
         binding.taskDeadline.text =
             DateFormat.format(Constants.DeadlineFormat, deadlineLong).toString()

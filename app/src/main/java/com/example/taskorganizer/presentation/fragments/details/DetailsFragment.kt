@@ -1,7 +1,5 @@
 package com.example.taskorganizer.presentation.fragments.details
 
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.format.DateFormat
 import androidx.fragment.app.Fragment
@@ -32,12 +30,6 @@ class DetailsFragment : Fragment() {
     private lateinit var binding: DetailsFragmentBinding
     private lateinit var viewModel: DetailsViewModel
     private var deadlineLong: Long = 0
-//    private lateinit var calendar: Calendar
-//    private var mYear = 0
-//    private var mMonth = 0
-//    private var mDay = 0
-//    private var mHour = 0
-//    private var mMinute = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,7 +68,6 @@ class DetailsFragment : Fragment() {
 
 
     private fun setListener() {
-
         binding.btnEdit.setOnClickListener { editTask() }
         binding.btnDelete.setOnClickListener {
             val value = deleteTask()
@@ -95,28 +86,11 @@ class DetailsFragment : Fragment() {
             }
         }
         binding.taskDeadline.setOnClickListener {
-            pickDateTime()
+            viewModel.setDeadline(requireContext(), ::saveDeadline)
         }
     }
 
-    private fun pickDateTime() {
-        val currentDateTime = Calendar.getInstance()
-        val startYear = currentDateTime.get(Calendar.YEAR)
-        val startMonth = currentDateTime.get(Calendar.MONTH)
-        val startDay = currentDateTime.get(Calendar.DAY_OF_MONTH)
-        val startHour = currentDateTime.get(Calendar.HOUR_OF_DAY)
-        val startMinute = currentDateTime.get(Calendar.MINUTE)
-
-        DatePickerDialog(requireContext(), { _, year, month, day ->
-            TimePickerDialog(requireContext(), { _, hour, minute ->
-                val pickedDateTime = Calendar.getInstance()
-                pickedDateTime.set(year, month, day, hour, minute)
-                setDeadline(pickedDateTime)
-            }, startHour, startMinute, false).show()
-        }, startYear, startMonth, startDay).show()
-    }
-
-    private fun setDeadline(calendar:Calendar){
+    private fun saveDeadline(calendar: Calendar) {
         deadlineLong = calendar.timeInMillis
         binding.taskDeadline.text =
             DateFormat.format(Constants.DeadlineFormat, deadlineLong).toString()
@@ -128,69 +102,37 @@ class DetailsFragment : Fragment() {
     }
 
     private fun editTask() {
-        setClickableEditText(binding.taskTitle, true)
-        setClickableEditText(binding.taskDescription, true)
-        setClickableEditText(binding.taskDeadline, true)
-        setClickableEditText(binding.taskPlace, true)
-        setClickableEditText(binding.taskTitle, true)
-        setClickableCheckBox(binding.checkBoxReminder, true)
-        setClickableCheckBox(binding.checkBoxDone, true)
+        enableClickEditText(binding.taskTitle)
+        enableClickEditText(binding.taskDescription)
+        enableClickEditText(binding.taskDeadline)
+        enableClickEditText(binding.taskPlace)
+        enableClickEditText(binding.taskTitle)
+        enableClickCheckBox(binding.checkBoxReminder)
+        enableClickCheckBox(binding.checkBoxDone)
 
-        setClickableCheckBox(binding.highPriority, true)
-        setClickableCheckBox(binding.normalPriority, true)
-        setClickableCheckBox(binding.lowPriority, true)
+        enableClickCheckBox(binding.highPriority)
+        enableClickCheckBox(binding.normalPriority)
+        enableClickCheckBox(binding.lowPriority)
 
         binding.btnSave.visibility = View.VISIBLE
         binding.btnDelete.visibility = View.GONE
         binding.btnEdit.visibility = View.GONE
     }
 
-    private fun setClickableEditText(v: TextView, bool: Boolean) = with(v) {
-        isClickable = bool
-        isLongClickable = bool
-        isCursorVisible = bool
-        isFocusable = bool
-        isFocusableInTouchMode = bool
+    private fun enableClickEditText(v: TextView) = with(v) {
+        isClickable = true
+        isLongClickable = true
+        isCursorVisible = true
+        isFocusable = true
+        isFocusableInTouchMode = true
         requestFocus()
     }
 
-    private fun setClickableCheckBox(v: Button, bool: Boolean) = with(v) {
-        isClickable = bool
-        isLongClickable = bool
-        isFocusable = bool
+    private fun enableClickCheckBox(v: Button) = with(v) {
+        isClickable = true
+        isLongClickable = true
+        isFocusable = true
     }
-
-//    @Suppress("RedundantSamConstructor")
-//    private fun setDeadline() {
-//        calendar = Calendar.getInstance()
-//        getCurrentDateAndTime()
-//        DatePickerDialog(
-//            APP,
-//            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-//                TimePickerDialog(
-//                    APP,
-//                    TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
-//                        mHour = hourOfDay
-//                        mMinute = minute
-//                        calendar.set(mYear, mMonth, mDay, mHour, mMinute)
-//                        binding.taskDeadline.text =
-//                            DateFormat.format("EEE, d MMM yyyy HH:mm", calendar).toString()
-//                    }, mHour, mMinute, true
-//                ).show()
-//                mYear = year
-//                mMonth = month
-//                mDay = dayOfMonth
-//            }, mYear, mMonth, mDay
-//        ).show()
-//    }
-//
-//    private fun getCurrentDateAndTime() {
-//        mYear = calendar.get(Calendar.YEAR)
-//        mMonth = calendar.get(Calendar.MONTH)
-//        mDay = calendar.get(Calendar.DAY_OF_MONTH)
-//        mHour = calendar.get(Calendar.HOUR)
-//        mMinute = calendar.get(Calendar.MINUTE)
-//    }
 
     private fun setPriority() = when (binding.radioGroup.checkedRadioButtonId) {
         R.id.high_priority -> Priority.HIGH.ordinal
@@ -227,5 +169,4 @@ class DetailsFragment : Fragment() {
         return if (!viewModel.delete(task)) ERROR_DELETE
         else SUCCESS_DELETE
     }
-
 }

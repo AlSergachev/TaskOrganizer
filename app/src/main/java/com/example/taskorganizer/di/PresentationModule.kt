@@ -1,10 +1,7 @@
 package com.example.taskorganizer.di
 
 import android.content.Context
-import com.example.taskorganizer.domain.usecase.DeleteTaskUseCase
-import com.example.taskorganizer.domain.usecase.SortTaskListByUseCase
-import com.example.taskorganizer.domain.usecase.GetTaskListUseCase
-import com.example.taskorganizer.domain.usecase.SaveTaskUseCase
+import com.example.taskorganizer.domain.usecase.*
 import com.example.taskorganizer.presentation.fragments.create.CreateViewModelFactory
 import com.example.taskorganizer.presentation.fragments.details.DetailsViewModelFactory
 import com.example.taskorganizer.presentation.fragments.list.ListViewModelFactory
@@ -20,17 +17,26 @@ class PresentationModule(val context: Context) {
     }
 
     @Provides
-    fun provideCreateViewModelFactory(saveTaskUseCase: SaveTaskUseCase): CreateViewModelFactory {
-        return CreateViewModelFactory(saveTaskUseCase = saveTaskUseCase)
+    fun provideCreateViewModelFactory(
+        saveTaskUseCase: SaveTaskUseCase,
+        setDeadlineUseCase: SetDeadlineUseCase
+    ): CreateViewModelFactory {
+        return CreateViewModelFactory(
+            saveTaskUseCase = saveTaskUseCase,
+            setDeadlineUseCase = setDeadlineUseCase
+        )
     }
 
     @Provides
     fun provideDetailsViewModelFactory(
         saveTaskUseCase: SaveTaskUseCase,
-        deleteTaskUseCase: DeleteTaskUseCase
+        deleteTaskUseCase: DeleteTaskUseCase,
+        setDeadlineUseCase: SetDeadlineUseCase
     ): DetailsViewModelFactory {
         return DetailsViewModelFactory(
-            saveTaskUseCase = saveTaskUseCase, deleteTaskUseCase = deleteTaskUseCase
+            saveTaskUseCase = saveTaskUseCase,
+            deleteTaskUseCase = deleteTaskUseCase,
+            setDeadlineUseCase = setDeadlineUseCase
         )
     }
 
