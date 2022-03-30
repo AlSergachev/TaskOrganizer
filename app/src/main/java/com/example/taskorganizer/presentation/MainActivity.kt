@@ -13,11 +13,13 @@ import com.example.taskorganizer.databinding.MainActivityBinding
 import com.example.taskorganizer.app.APP
 import com.example.taskorganizer.app.App
 import com.example.taskorganizer.presentation.utils.Notify
+import com.example.taskorganizer.presentation.utils.SortType
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: MainActivityBinding
     lateinit var navController: NavController
+    var sortType: SortType = SortType.DEFAULT
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,19 +32,15 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun toDetailsFragment(bundle: Bundle?){
-        navController.navigate(R.id.detailsFragment, bundle)
-    }
-
-    fun toCreateFragment(){
+    fun toCreateFragment() {
         navController.navigate(R.id.createFragment)
     }
 
-    fun toListFragment(){
+    fun toListFragment() {
         navController.navigate(R.id.mainFragment)
     }
 
-    fun toast(notify: Notify){
+    fun toast(notify: Notify) {
         val test = when (notify) {
             Notify.EMPTY_TASK -> "Вы не можете сохранить пустую задачу"
             Notify.ERROR_SAVE -> "Задача не сохранена"

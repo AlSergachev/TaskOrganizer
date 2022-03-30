@@ -14,10 +14,10 @@ class ListViewModel(
     private val sortTaskListByUseCase: SortTaskListByUseCase
 ) : ViewModel() {
 
-    var sortType: SortType = SortType.DEFAULT
+//    var sortType: SortType = SortType.DEFAULT
 
     fun sortBy(sortType: SortType) {
-        this.sortType = sortType
+//        this.sortType = sortType
         sortTaskListByUseCase.execute(sortType)
     }
 

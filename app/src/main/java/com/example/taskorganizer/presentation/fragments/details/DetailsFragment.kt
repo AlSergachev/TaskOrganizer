@@ -51,8 +51,11 @@ class DetailsFragment : Fragment() {
         taskTitle.setText(task.title)
         taskDescription.setText(task.description)
         deadlineLong = task.deadline
-        taskDeadline.text =
+        taskDeadline.text = if (deadlineLong > 0) {
             DateFormat.format(Constants.DeadlineFormat, deadlineLong).toString()
+        } else {
+            ""
+        }
         checkBoxReminder.isChecked = task.isReminder
         taskPlace.setText(task.place)
         checkBoxDone.isChecked = task.isDone

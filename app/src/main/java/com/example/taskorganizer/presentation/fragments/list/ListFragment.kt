@@ -54,7 +54,7 @@ class ListFragment : Fragment() {
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         recyclerView.adapter = adapter
-        viewModel.sortBy(viewModel.sortType)
+        viewModel.sortBy(APP.sortType)
 
         viewModel.getList().observe(viewLifecycleOwner) { newList ->
             updateList(newList)
@@ -74,7 +74,7 @@ class ListFragment : Fragment() {
         binding.btnSort.setOnClickListener {
             showSortDialog()
         }
-        binding.btnUpdate.setOnClickListener{
+        binding.btnUpdate.setOnClickListener {
             updateList(viewModel.getList().value!!)
         }
     }
@@ -116,6 +116,7 @@ class ListFragment : Fragment() {
                 }
             }
             showToast(message)
+            APP.sortType = sortType
             viewModel.sortBy(sortType)
             dialog.dismiss()
         }

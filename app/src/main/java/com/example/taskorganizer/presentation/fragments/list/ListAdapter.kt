@@ -45,13 +45,17 @@ class ListAdapter(private val onUpdateCallback: (TaskModel, Int) -> Unit) :
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         holder.title.text = listTask[position].title
-        holder.deadline.text =
+
+        holder.deadline.text = if (listTask[position].deadline > 0) {
             DateFormat.format(Constants.DeadlineFormat, listTask[position].deadline).toString()
+        } else ""
+
         holder.isReminder.visibility = if (listTask[position].isReminder) {
             View.VISIBLE
         } else {
             View.INVISIBLE
         }
+
         holder.isDone.isChecked = listTask[position].isDone
         holder.priority.setBackgroundColor(getPriority(listTask[position]))
 
