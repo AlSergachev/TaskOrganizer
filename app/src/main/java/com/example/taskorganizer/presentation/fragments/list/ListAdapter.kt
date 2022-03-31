@@ -58,8 +58,6 @@ class ListAdapter(private val onUpdateCallback: (TaskModel, Int) -> Unit) :
 
         holder.isDone.isChecked = listTask[position].isDone
         holder.priority.setBackgroundColor(getPriority(listTask[position]))
-
-
     }
 
     override fun getItemCount() = listTask.size

@@ -24,6 +24,7 @@ class TaskRepositoryImpl(private val taskDao: TaskDao) : TaskRepository {
         when(sortType){
             SortType.PRIORITY -> taskList.postValue(taskDao.getListSortedByPriority())
             SortType.CREATION -> taskList.postValue(taskDao.getListSortedByCreated())
+            SortType.DEADLINE -> taskList.postValue(taskDao.getListSortedByDeadline())
             else -> taskList.postValue(taskDao.getListTasks())
         }
     }

@@ -20,4 +20,7 @@ interface TaskDao {
 
     @Query("SELECT * from task_table ORDER BY created DESC")
     fun getListSortedByCreated(): List<TaskModel>
+
+    @Query("SELECT * from task_table WHERE deadline!=0 ORDER BY deadline ASC")
+    fun getListSortedByDeadline(): List<TaskModel>
 }

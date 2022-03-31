@@ -30,13 +30,7 @@ class DomainModule {
     }
 
     @Provides
-    fun provideSaveTaskUseCase(
-        taskRepository: TaskRepository,
-        excuseRepository: ExcuseRepository
-    ): SaveTaskUseCase {
-        return SaveTaskUseCase(
-            taskRepository = taskRepository,
-            excuseRepository = excuseRepository
-        )
+    fun provideSaveTaskUseCase(taskRepository: TaskRepository): SaveTaskUseCase {
+        return SaveTaskUseCase(taskRepository = taskRepository)
     }
 }
